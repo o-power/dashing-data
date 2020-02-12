@@ -1,1 +1,14 @@
-# dashing-data
+# Dashing Data
+
+## Local development environment
+Clone
+Create a virtual environment and activate it
+```
+python -m venv env
+source env/Scripts/activate
+```
+Install packages from requirements.txt
+```
+```
+Makemigrations
+Migrate
