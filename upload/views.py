@@ -14,8 +14,13 @@ def upload(request):
             # ...
             # redirect to a new URL:
             
-            #subject = form.cleaned_data['chart_title']
-            return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data})
+            chart_title = upload_data_form.cleaned_data['chart_title']
+            x_data = upload_data_form.cleaned_data['x_data'].splitlines()
+            y_data = upload_data_form.cleaned_data['y_data'].splitlines()
+
+            return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
+                                                        'x_data': x_data,
+                                                        'y_data': y_data,})
 
     # if a GET (or any other method) we'll create a blank form
     else:
