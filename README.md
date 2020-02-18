@@ -10,5 +10,6 @@ source env/Scripts/activate
 Install packages from requirements.txt
 ```
 ```
+Create an env.py file
 Makemigrations
 Migrate
