@@ -7,8 +7,16 @@
     <form action="{% url 'upload' %}" method="post">
         {% csrf_token %}
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 {{ upload_data_form.chart_title|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {{ upload_data_form.x_data|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ upload_data_form.y_data|as_crispy_field }}
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
