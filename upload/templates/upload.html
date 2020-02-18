@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
 {% block content %}
     <p>Hello</p>
     <form action="{% url 'upload' %}" method="post">
         {% csrf_token %}
-        {{ upload_data_form }}
-        <input type="submit" value="Submit">
+        <div class="row">
+            <div class="col-6">
+                {{ upload_data_form.chart_title|as_crispy_field }}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}
