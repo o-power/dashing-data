@@ -1,4 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
     <p>Hello</p>
+    <form action="{% url 'upload' %}" method="post">
+        {% csrf_token %}
+        {{ upload_data_form }}
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
