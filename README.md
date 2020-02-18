@@ -9,6 +9,7 @@ source env/Scripts/activate
 ```
 Install packages from requirements.txt
 ```
+pip install -r requirements.txt
 ```
 Create an env.py file
 Makemigrations
