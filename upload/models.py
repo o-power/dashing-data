@@ -1,6 +1,6 @@
 #from django.db import models
 
-#class Order(models.Model):
+#class DataSet(models.Model):
 
     # xxx = models.CharField(max_length=40, blank=False)
     # xxx = models.DateField()

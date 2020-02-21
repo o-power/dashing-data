@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from upload import urls as urls_upload
+from charts import urls as urls_charts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', include(urls_upload)),
+    path('charts/', include(urls_charts)),
 ]

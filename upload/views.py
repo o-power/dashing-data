@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from .forms import UploadDataForm
 
 def upload(request):
@@ -18,9 +18,18 @@ def upload(request):
             x_data = upload_data_form.cleaned_data['x_data'].splitlines()
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
 
-            return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
-                                                        'x_data': x_data,
-                                                        'y_data': y_data,})
+            #return redirect(create_bar_chart, chart_title)
+            uploaded_data = request.session.get('uploaded_data', {})
+
+            uploaded_data['x_data'] = x_data
+            uploaded_data['y_data'] = y_data
+            
+            request.session['uploaded_data'] = uploaded_data
+
+            return redirect(reverse('create_bar_chart'))
+            #return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
+            #'x_data': x_data,
+            #                                            'y_data': y_data,})
 
     # if a GET (or any other method) we'll create a blank form
     else:
