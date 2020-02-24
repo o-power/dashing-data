@@ -8,10 +8,12 @@ def uploaded_data_function(request):
         print('Hello 1')
         x_data = uploaded_data['x_data']
         y_data = uploaded_data['y_data']
+        bar_data = uploaded_data['bar_data']
     else:
         print('Hello 2')
         x_data = []
         y_data = []
+        bar_data = []
         
 
-    return {'x_data': x_data, 'y_data': y_data}
+    return {'x_data': x_data, 'y_data': y_data, 'bar_data': bar_data}

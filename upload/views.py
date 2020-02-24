@@ -18,18 +18,32 @@ def upload(request):
             x_data = upload_data_form.cleaned_data['x_data'].splitlines()
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
 
+            y_data = list(map(int, y_data))
+
             #return redirect(create_bar_chart, chart_title)
             uploaded_data = request.session.get('uploaded_data', {})
 
             uploaded_data['x_data'] = x_data
             uploaded_data['y_data'] = y_data
             
+            bar_data = []
+            for i in range(0,len(x_data),1):
+                bar_data.append({'x_data': x_data[i], 'y_data': y_data[i]})
+            
+            uploaded_data['bar_data'] = bar_data
+
             request.session['uploaded_data'] = uploaded_data
+
+            #print(request.session['uploaded_data'])
 
             return redirect(reverse('create_bar_chart'))
             #return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
             #'x_data': x_data,
             #                                            'y_data': y_data,})
+
+
+            # Don't forget to empty session dict when finished
+            #request.session['cart'] = {}
 
     # if a GET (or any other method) we'll create a blank form
     else:
