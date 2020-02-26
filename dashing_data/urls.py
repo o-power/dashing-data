@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from home import urls as urls_home
 from upload import urls as urls_upload
-from charts import urls as urls_charts
+from barchart import urls as urls_barchart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include(urls_home)),
     path('upload/', include(urls_upload)),
-    path('charts/', include(urls_charts)),
+    path('barchart/', include(urls_barchart)),
 ]

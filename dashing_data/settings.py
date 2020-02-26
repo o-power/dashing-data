@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'upload.apps.UploadConfig',
-    'charts.apps.ChartsConfig',
+    'home.apps.HomeConfig',
+    'barchart.apps.BarchartConfig',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'upload.contexts.uploaded_data_function',
+                'barchart.contexts.uploaded_data_function',
             ],
         },
     },
