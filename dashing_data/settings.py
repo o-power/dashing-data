@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'barchart.apps.BarchartConfig',
+    'search.apps.SearchConfig',
 ]
 
 MIDDLEWARE = [
