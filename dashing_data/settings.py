@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'barchart.apps.BarchartConfig',
 ]

@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'create_chart' %}">Create Chart</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
@@ -51,6 +54,15 @@
             </form>
         </div>
     </nav>
+    {% if messages %}
+        <div class="alert alert-success">
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     <div class="container">
         {% block content %}
         {% endblock %}

@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from home import urls as urls_home
+from accounts import urls as urls_accounts
 from barchart import urls as urls_barchart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls_home)),
+    path('accounts/', include(urls_accounts)),
     path('barchart/', include(urls_barchart)),
 ]
