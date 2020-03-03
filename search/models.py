@@ -11,7 +11,7 @@ class UserChart(models.Model):
         return "user_id: " + str(self.user_id) + \
             " chart_id: " + str(self.pk)
 
-#class BarCharts(models.Model):
+#class BarChart(models.Model):
 #    chart_id = models.ForeignKey(UserCharts, on_delete=models.CASCADE)
 #    x_data = 
 #    y_data = 

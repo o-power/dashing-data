@@ -22,8 +22,11 @@ def upload_bar_chart(request):
 
             y_data = list(map(int, y_data))
 
+            request.session['chart_type'] = 'bar'
+
             #return redirect(create_bar_chart, chart_title)
-            uploaded_data = request.session.get('uploaded_data', {})
+            #uploaded_data = request.session.get('uploaded_data', {})
+            uploaded_data = {}
 
             uploaded_data['x_data'] = x_data
             uploaded_data['y_data'] = y_data
