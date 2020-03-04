@@ -28,6 +28,7 @@ def upload_bar_chart(request):
             #uploaded_data = request.session.get('uploaded_data', {})
             uploaded_data = {}
 
+            uploaded_data['chart_title'] = chart_title
             uploaded_data['x_data'] = x_data
             uploaded_data['y_data'] = y_data
             
