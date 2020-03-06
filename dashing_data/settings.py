@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'crispy_forms',
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
-    'barchart.apps.BarchartConfig',
     'search.apps.SearchConfig',
+    'barchart.apps.BarchartConfig',
+    'linechart.apps.LinechartConfig',
 ]
 
 MIDDLEWARE = [

@@ -6,7 +6,7 @@
 
 {% block content %}
     <p>Hello</p>
-    <form action="{% url 'upload_bar_chart' %}" method="post">
+    <form action="{% url 'barchart:upload_bar_chart' %}" method="post">
         {% csrf_token %}
         <div class="row">
             <div class="col-12">

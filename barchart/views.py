@@ -42,7 +42,7 @@ def upload_bar_chart(request):
 
             #print(request.session['uploaded_data'])
 
-            return redirect(reverse('create_bar_chart'))
+            return redirect(reverse('barchart:create_bar_chart'))
             #return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
             #'x_data': x_data,
             #                                            'y_data': y_data,})

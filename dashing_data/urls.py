@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from home import urls as urls_home
 from accounts import urls as urls_accounts
-from barchart import urls as urls_barchart
 from search import urls as urls_search
+from barchart import urls as urls_barchart
+from linechart import urls as urls_linechart
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(urls_home)),
     path('accounts/', include(urls_accounts)),
-    path('barchart/', include(urls_barchart)),
     path('search/', include(urls_search)),
+    path('barchart/', include(urls_barchart)),
+    path('linechart/', include(urls_linechart)),
 ]
