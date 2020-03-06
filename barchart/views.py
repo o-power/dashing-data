@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect, reverse
 from .forms import UploadDataForm
 
-def upload_bar_chart(request):
+def upload_chart(request):
     """A form through which the user uploads data"""
 
     # if this is a POST request we need to process the form data
@@ -42,7 +42,7 @@ def upload_bar_chart(request):
 
             #print(request.session['uploaded_data'])
 
-            return redirect(reverse('barchart:create_bar_chart'))
+            return redirect(reverse('barchart:create_chart'))
             #return render(request, 'upload_test.html', {'form_data_dict': upload_data_form.cleaned_data,
             #'x_data': x_data,
             #                                            'y_data': y_data,})
@@ -57,6 +57,6 @@ def upload_bar_chart(request):
 
     return render(request, 'barchart/upload.html', {'upload_data_form': upload_data_form})
 
-def create_bar_chart(request):
+def create_chart(request):
     """Creates bar chart"""
-    return render(request, 'barchart/barchart.html')
+    return render(request, 'barchart/chart.html')
