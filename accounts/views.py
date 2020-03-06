@@ -31,12 +31,12 @@ def register(request):
         registration_form = UserRegistrationForm()
 
     context = {'registration_form': registration_form, 'next': request.GET.get('next', '')}
-    return render(request, 'register.html', context)
+    return render(request, 'accounts/register.html', context)
 
 @login_required
 def profile(request):
     """A view that displays the profile page of a logged in user."""
-    return render(request, 'profile.html')
+    return render(request, 'accounts/profile.html')
 
 @login_required
 def logout(request):
@@ -69,4 +69,4 @@ def login(request):
         login_form = UserLoginForm()
 
     context = {'login_form': login_form, 'next': request.GET.get('next', '')}
-    return render(request, 'login.html', context)
+    return render(request, 'accounts/login.html', context)

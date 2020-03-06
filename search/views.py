@@ -34,4 +34,4 @@ def save_chart(request):
     # {'x_data': 'B', 'y_data': 6}, 
     # {'x_data': 'C', 'y_data': 7}]}
     # need to save chart and data
-    return render(request, "savedcharts.html")
+    return render(request, 'search/savedcharts.html')

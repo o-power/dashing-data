@@ -4,4 +4,4 @@ from django.shortcuts import render
 #from .forms import UploadDataForm
 
 def upload_line_chart(request):
-    return render(request, 'linechart.html')
+    return render(request, 'linechart/linechart.html')

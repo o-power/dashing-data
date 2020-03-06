@@ -55,8 +55,8 @@ def upload_bar_chart(request):
     else:
         upload_data_form = UploadDataForm()
 
-    return render(request, 'upload.html', {'upload_data_form': upload_data_form})
+    return render(request, 'barchart/upload.html', {'upload_data_form': upload_data_form})
 
 def create_bar_chart(request):
     """Creates bar chart"""
-    return render(request, 'barchart.html')
+    return render(request, 'barchart/barchart.html')
