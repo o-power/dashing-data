@@ -3,5 +3,13 @@
 {% block page_title %}Search Saved Charts{% endblock page_title %}
 
 {% block content %}
+
     <p>Saved charts</p>
+    {% for chart in charts %}
+        <p>{{ chart.user_id }}</p>
+        <p>{{ chart.chart_type }}</p>
+        <p>{{ chart.title }}</p>
+        <p>{{ chart.date_created }}</p>
+    {% endfor %}
+
 {% endblock %}

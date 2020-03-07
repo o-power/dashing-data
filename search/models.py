@@ -11,7 +11,6 @@ class UserChart(models.Model):
         return "user_id: " + str(self.user_id) + \
             " chart_id: " + str(self.pk)
 
-# consider putting this in barchart/forms.py
 class BarChart(models.Model):
     chart_id = models.ForeignKey(UserChart, on_delete=models.CASCADE)
     x_data = models.CharField(max_length=50)

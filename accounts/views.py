@@ -62,7 +62,7 @@ def login(request):
                     next = request.GET.get('next')
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('index'))
+                    return redirect(reverse('save_chart'))
             else:
                 login_form.add_error(None, 'Your username or password are incorrect.')
     else:

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserChart, BarChart
@@ -34,4 +34,10 @@ def save_chart(request):
     # {'x_data': 'B', 'y_data': 6}, 
     # {'x_data': 'C', 'y_data': 7}]}
     # need to save chart and data
-    return render(request, 'search/savedcharts.html')
+    return redirect(reverse('all_charts'))
+    #return render(request, 'search/savedcharts.html')
+
+@login_required
+def all_charts(request):
+    charts = UserChart.objects.all()
+    return render(request, 'search/savedcharts.html', {'charts': charts})
