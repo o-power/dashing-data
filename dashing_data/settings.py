@@ -69,7 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'barchart.contexts.uploaded_data_function',
+                'home.contexts.uploaded_data_function',
             ],
         },
     },

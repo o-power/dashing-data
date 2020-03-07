@@ -8,15 +8,13 @@
 
 {% block content %}
     <p>Bar Chart</p>
-    <p>{{ x_data }}</p>
-    <p>{{ y_data }}</p>
-    <p>{{ bar_data }}</p>
+    <p>{{ chart_data }}</p>
 
     <div id="draw-here"></div>
 
     <a class="btn btn-primary" href="{% url 'save_chart' %}" role="button">Save Chart</a>
 
-    {{ bar_data|json_script:"bar_data" }}
+    {{ chart_data|json_script:"bar_data" }}
     <script>
         // set the dimensions and margins of the graph
         var margin = {top: 30, right: 30, bottom: 70, left: 60},

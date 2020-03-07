@@ -29,14 +29,14 @@ def upload_chart(request):
             uploaded_data = {}
 
             uploaded_data['chart_title'] = chart_title
-            uploaded_data['x_data'] = x_data
-            uploaded_data['y_data'] = y_data
+            #uploaded_data['x_data'] = x_data
+            #uploaded_data['y_data'] = y_data
             
             bar_data = []
             for i in range(0,len(x_data),1):
                 bar_data.append({'x_data': x_data[i], 'y_data': y_data[i]})
             
-            uploaded_data['bar_data'] = bar_data
+            uploaded_data['chart_data'] = bar_data
 
             request.session['uploaded_data'] = uploaded_data
 
