@@ -9,11 +9,39 @@
         <input type="text" name="q">
         <button type="search">Search</button>
     </form>
-    {% for chart in charts %}
-        <p>{{ chart.user_id }}</p>
-        <p>{{ chart.chart_type }}</p>
-        <p>{{ chart.title }}</p>
-        <p>{{ chart.date_created }}</p>
-    {% endfor %}
 
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Type</th>
+                <th scope="col">Title</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Views</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chart in charts %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ chart.chart_type }}</td>
+                <td>{{ chart.title }}</td>
+                <td>{{ chart.date_created }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>No saved charts yet</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
 {% endblock %}

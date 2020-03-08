@@ -16,8 +16,11 @@ def save_chart(request):
 
     uploaded_data = request.session.get('uploaded_data', {})
 
+    # check if empty dictionary?
+    
+    # should we only save user_chart when we know everything is ok with data?
     if chart_type == 'bar':
-        for row in uploaded_data['bar_data']:
+        for row in uploaded_data['chart_data']:
             bar_chart = BarChart(
                 chart_id = user_chart,
                 x_data = row['x_data'],
@@ -26,6 +29,8 @@ def save_chart(request):
             bar_chart.save()
     else:
         print('Missing bar chart')
+
+    # clear session variable?
 
     #print(uploaded_data)
     #{'x_data': ['A', 'B', 'C'], 
@@ -39,10 +44,10 @@ def save_chart(request):
 
 @login_required
 def all_charts(request):
-    charts = UserChart.objects.all()
+    charts = UserChart.objects.all().order_by('-date_created')
     return render(request, 'search/savedcharts.html', {'charts': charts})
 
 @login_required
 def do_search(request):
-    charts = UserChart.objects.filter(title__icontains=request.GET['q'])
+    charts = UserChart.objects.filter(title__icontains=request.GET['q']).order_by('-date_created')
     return render(request, 'search/savedcharts.html', {'charts': charts})
