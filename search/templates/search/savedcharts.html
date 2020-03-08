@@ -5,6 +5,10 @@
 {% block content %}
 
     <p>Saved charts</p>
+    <form action="{% url 'do_search' %}" method="get">
+        <input type="text" name="q">
+        <button type="search">Search</button>
+    </form>
     {% for chart in charts %}
         <p>{{ chart.user_id }}</p>
         <p>{{ chart.chart_type }}</p>

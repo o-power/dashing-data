@@ -41,3 +41,8 @@ def save_chart(request):
 def all_charts(request):
     charts = UserChart.objects.all()
     return render(request, 'search/savedcharts.html', {'charts': charts})
+
+@login_required
+def do_search(request):
+    charts = UserChart.objects.filter(title__icontains=request.GET['q'])
+    return render(request, 'search/savedcharts.html', {'charts': charts})
