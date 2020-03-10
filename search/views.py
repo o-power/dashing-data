@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserChart, BarChart
@@ -51,3 +51,11 @@ def all_charts(request):
 def do_search(request):
     charts = UserChart.objects.filter(title__icontains=request.GET['q']).order_by('-date_created')
     return render(request, 'search/savedcharts.html', {'charts': charts})
+
+def delete_chart(request, pk=None):
+    chart = get_object_or_404(UserChart, pk=pk) if pk else None
+    if request.method == "POST":
+        chart.delete()
+        return redirect(reverse('all_charts'))
+    
+    return render(request, 'search/confirmdelete.html', {'chart': chart})

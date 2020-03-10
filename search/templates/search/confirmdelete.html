@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_title %}Search Saved Charts{% endblock page_title %}
+
+{% block content %}
+
+    <p>Confirm Delete</p>
+    <form action="{% url 'delete_chart' chart.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Confirm</button>
+        <a href="{% url 'all_charts' %}" class="btn btn-primary">Cancel</a>
+    </form>
+    
+{% endblock %}
