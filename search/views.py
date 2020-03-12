@@ -30,7 +30,7 @@ def save_chart(request):
     else:
         print('Missing bar chart')
 
-    # clear session variable?
+    # clear session variable? otherwise will save again if we go to search/save/
 
     #print(uploaded_data)
     #{'x_data': ['A', 'B', 'C'], 
@@ -44,16 +44,23 @@ def save_chart(request):
 
 @login_required
 def all_charts(request):
-    charts = UserChart.objects.all().order_by('-date_created')
+    charts = UserChart.objects.filter(user_id=request.user.id).order_by('-date_created')
     return render(request, 'search/savedcharts.html', {'charts': charts})
 
 @login_required
 def do_search(request):
-    charts = UserChart.objects.filter(title__icontains=request.GET['q']).order_by('-date_created')
+
+    if 'q' in request.GET:
+        charts = UserChart.objects.filter(user_id=request.user.id,
+                                          title__icontains=request.GET['q']).order_by('-date_created')
+    else:
+        return redirect(reverse('search:all_charts'))
+
     return render(request, 'search/savedcharts.html', {'charts': charts})
 
+@login_required
 def delete_chart(request, pk=None):
-    chart = get_object_or_404(UserChart, pk=pk) if pk else None
+    chart = get_object_or_404(UserChart, user_id=request.user.id, pk=pk) if pk else None
     if request.method == "POST":
         chart.delete()
         return redirect(reverse('search:all_charts'))

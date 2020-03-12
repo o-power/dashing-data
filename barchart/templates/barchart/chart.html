@@ -12,7 +12,7 @@
 
     <div id="draw-here"></div>
 
-    <a class="btn btn-primary" href="{% url 'save_chart' %}" role="button">Save Chart</a>
+    <a class="btn btn-primary" href="{% url 'search:save_chart' %}" role="button">Save Chart</a>
 
     {{ chart_data|json_script:"bar_data" }}
     <script>
