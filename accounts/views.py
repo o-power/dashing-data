@@ -24,7 +24,7 @@ def register(request):
                     next = request.GET.get('next')
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('index'))
+                    return redirect(reverse('home:index'))
             else:
                 messages.error(request, 'Unable to log you in at this time!')
     else:
@@ -43,7 +43,7 @@ def logout(request):
     """A view that logs the user out and redirects back to the index page."""
     auth.logout(request)
     messages.success(request, 'You have successfully logged out.')
-    return redirect(reverse('index'))
+    return redirect(reverse('home:index'))
 
 def login(request):
     """A view that manages the login form."""
@@ -62,7 +62,7 @@ def login(request):
                     next = request.GET.get('next')
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('save_chart'))
+                    return redirect(reverse('search:save_chart'))
             else:
                 login_form.add_error(None, 'Your username or password are incorrect.')
     else:

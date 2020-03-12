@@ -5,7 +5,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
+    <form method="post" action="{% url 'accounts:login' %}?next={{ next }}" class="accountform">
         <fieldset class="form-group">
             <legend>Login</legend>
             
@@ -20,5 +20,5 @@
     </form>
 
     <p>New to Dashing Data?</p>
-    <a class="btn btn-primary" href="{% url 'register' %}?next={{ next }}" role="button">Register</a>
+    <a class="btn btn-primary" href="{% url 'accounts:register' %}?next={{ next }}" role="button">Register</a>
 {% endblock %}

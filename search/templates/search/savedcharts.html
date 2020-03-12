@@ -5,7 +5,7 @@
 {% block content %}
 
     <p>Saved charts</p>
-    <form action="{% url 'do_search' %}" method="get">
+    <form action="{% url 'search:do_search' %}" method="get">
         <input type="text" name="q">
         <button type="search">Search</button>
     </form>
@@ -32,14 +32,14 @@
                 <td>
                     <button type="button" class="btn btn-primary btn-sm">View</button>
                     <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <a href="{% url 'delete_chart' chart.id %}" class="btn btn-primary btn-sm">Delete</a>
+                    <a href="{% url 'search:delete_chart' chart.id %}" class="btn btn-primary btn-sm">Delete</a>
                 </td>
             </tr>
             {% empty %}
             <tr>
                 <th scope="row"></th>
                 <td></td>
-                <td>No saved charts yet</td>
+                <td>No matching saved charts found</td>
                 <td></td>
                 <td></td>
                 <td></td>

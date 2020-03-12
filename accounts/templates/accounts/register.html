@@ -5,8 +5,8 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<p>If you already have an account, you can <a href="{% url 'login' %}">sign in</a></p>
-<form method="post" action="{% url 'register' %}?next={{ next }}">
+<p>If you already have an account, you can <a href="{% url 'accounts:login' %}">sign in</a></p>
+<form method="post" action="{% url 'accounts:register' %}?next={{ next }}">
     {% csrf_token %}
 
     {{ registration_form | crispy }}

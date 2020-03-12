@@ -2,6 +2,7 @@ from django.urls import path
 from django.views.generic.base import RedirectView
 from .views import all_charts, do_search, save_chart, delete_chart
 
+app_name = 'search'
 urlpatterns = [
     path('', RedirectView.as_view(url='charts/')),
     path('charts/', all_charts, name='all_charts'),

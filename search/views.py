@@ -39,7 +39,7 @@ def save_chart(request):
     # {'x_data': 'B', 'y_data': 6}, 
     # {'x_data': 'C', 'y_data': 7}]}
     # need to save chart and data
-    return redirect(reverse('all_charts'))
+    return redirect(reverse('search:all_charts'))
     #return render(request, 'search/savedcharts.html')
 
 @login_required
@@ -56,6 +56,6 @@ def delete_chart(request, pk=None):
     chart = get_object_or_404(UserChart, pk=pk) if pk else None
     if request.method == "POST":
         chart.delete()
-        return redirect(reverse('all_charts'))
+        return redirect(reverse('search:all_charts'))
     
     return render(request, 'search/confirmdelete.html', {'chart': chart})
