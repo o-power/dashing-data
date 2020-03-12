@@ -13,7 +13,7 @@
 
             {{ login_form | crispy }}
             
-             <p><a href="">Forgot my password</a></p>
+             <p><a href="{% url 'accounts:password_reset' %}">Forgot my password</a></p>
              
             <button type="submit" class="btn btn-primary">Login</button>
         </fieldset>
