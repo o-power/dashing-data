@@ -20,6 +20,7 @@ from accounts import urls as urls_accounts
 from search import urls as urls_search
 from barchart import urls as urls_barchart
 from linechart import urls as urls_linechart
+from subscription import urls as urls_subscription
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('search/', include(urls_search)),
     path('barchart/', include(urls_barchart)),
     path('linechart/', include(urls_linechart)),
+    path('subscription/', include(urls_subscription))
 ]
