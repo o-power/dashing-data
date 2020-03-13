@@ -2,8 +2,6 @@
 
 {% block page_title %}Choose Subscription{% endblock page_title %}
 
-{% load crispy_forms_tags %}
-
 {% block content %}
 
 <p>Subscriptions</p>
@@ -17,7 +15,7 @@
             {{ subscription_type.price }}<br>
             {{ subscription_type.description }}
         </p>
-        <a href="" class="btn btn-primary">Sign Up</a>
+        <a href="{% url 'subscription:pay_subscription' subscription_type.id %}" class="btn btn-primary">Sign Up</a>
     </div>
 </div>
 {% endfor %}
