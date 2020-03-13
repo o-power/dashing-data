@@ -24,3 +24,8 @@ The template for the email is in the folder templates/registration.
 ## Subscriptions
 
 The subscription types are added/edited in the admin panel.
+
+Testing cards: https://stripe.com/docs/testing#international-cards
+Stripe Charge instructions: https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
+
+Screenshot of Stripe dashboard.

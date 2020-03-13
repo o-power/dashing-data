@@ -23,17 +23,13 @@ def register(request):
                 auth.login(request, user)
                 messages.success(request, 'You have successfully registered.')
 
-                if request.GET and request.GET.get('next') != '':
-                    next = request.GET.get('next')
-                    return HttpResponseRedirect(next)
-                else:
-                    return redirect(reverse('home:index'))
+                return redirect(reverse('subscription:choose_subscription'))
             else:
                 messages.error(request, 'Unable to log you in at this time!')
     else:
         registration_form = UserRegistrationForm()
 
-    context = {'registration_form': registration_form, 'next': request.GET.get('next', '')}
+    context = {'registration_form': registration_form}
     return render(request, 'accounts/register.html', context)
 
 @login_required

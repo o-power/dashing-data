@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import SubscriptionType
-#from .forms import MakePaymentForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
+@login_required
 def choose_subscription(request):
     """ """
     subscription_types = SubscriptionType.objects.all().order_by('length_months')
     return render(request, 'subscription/subscriptions.html', {'subscription_types': subscription_types})
 
+@login_required
 def pay_subscription(request, pk=None):
     """ """
     
