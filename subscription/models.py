@@ -2,7 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class SubscriptionType(models.Model):
-    description = models.CharField(max_length=50, blank=False)
+    name = models.CharField(max_length=50, blank=False, default='')
+    description = models.CharField(max_length=254, blank=False)
     length_months = models.IntegerField(blank=False)
     price = models.DecimalField(max_digits=5, decimal_places=2)
 

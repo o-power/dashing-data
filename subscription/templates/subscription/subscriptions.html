@@ -5,5 +5,21 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+
 <p>Subscriptions</p>
+
+{% for subscription_type in subscription_types %}
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ subscription_type.name }}</h5>
+        <p class="card-text">
+            {{ subscription_type.price }}<br>
+            {{ subscription_type.description }}
+        </p>
+        <a href="" class="btn btn-primary">Sign Up</a>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock %}
