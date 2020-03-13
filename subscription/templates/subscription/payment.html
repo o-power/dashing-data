@@ -7,30 +7,90 @@
 {% load crispy_forms_tags %}
 
 {% block head_js %}
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script type="text/javascript">
-    //<![CDATA[
-        Stripe.publishableKey = '{{ publishable }}';
-    //]]>
-</script>
-<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+<script src="https://js.stripe.com/v3/"></script>
 {% endblock head_js %}
 
 {% block content %}
-<form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
-    <legend>Payment Details</legend>
-
-    <div id="credit-card-errors" style="display: none;">
-        <div id="alert-message block-message error" id="stripe-error-message"></div>
+<form action="{% url 'subscription:pay_subscription' subscription_type.id %}" method="post" id="payment-form">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div class="form-control" id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
     </div>
 
-    <div class="form-group col-md-6">
-        {{ payment_form | crispy }}
-    </div>
+    <!-- Used to display Element errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
 
-    {% csrf_token %}
-    <div class="form-group col-md-12">
-        <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-    </div>
+  <button type="submit" class="btn btn-warning">Pay {{ subscription_type.price }}</button>
 </form>
+<script>
+  $(function () {
+    // create a Stripe client
+    var stripe = Stripe('{{ publishable }}');
+
+    // create an instance of elements
+    var elements = stripe.elements();
+
+    // Custom styling can be passed to options when creating an Element.
+    // Custom styling can be passed to options when creating an Element.
+    // (Note that this demo uses a wider set of styles than the guide below.)
+    // var style = {
+    //   base: {
+    //     color: '#32325d',
+    //     fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+    //     fontSmoothing: 'antialiased',
+    //     fontSize: '16px',
+    //     '::placeholder': {
+    //       color: '#aab7c4'
+    //     }
+    //   },
+    //   invalid: {
+    //     color: '#fa755a',
+    //     iconColor: '#fa755a'
+    //   }
+    // };
+
+    // Create an instance of the card Element.
+    //var card = elements.create('card', {style: style});
+    var card = elements.create('card');
+
+    // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+
+    // Create a token or display an error when the form is submitted.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function (result) {
+        if (result.error) {
+          // Inform the customer that there was an error.
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server.
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+
+      // Submit the form
+      form.submit();
+    }
+
+  })
+</script>
 {% endblock %}

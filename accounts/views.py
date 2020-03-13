@@ -7,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 def register(request):
     """A view that manages the registration form."""
     if request.method == 'POST':
+        #print('Registration')
+        #print(request.POST.keys())
+        #dict_keys(['csrfmiddlewaretoken', 'username', 'email', 'password1', 'password2'])
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():
             # create the user in the database
