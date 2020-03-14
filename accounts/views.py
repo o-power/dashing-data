@@ -37,7 +37,10 @@ def register(request):
 def profile(request):
     """A view that displays the profile page of a logged in user."""
     # dependent on there being only one subscription per user!
-    user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    try:
+        user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    except UserSubscription.DoesNotExist:
+        user_subscription = None
     return render(request, 'accounts/profile.html', {'user_subscription': user_subscription})
 
 @login_required
@@ -64,7 +67,7 @@ def login(request):
                     next = request.GET.get('next')
                     return HttpResponseRedirect(next)
                 else:
-                    return redirect(reverse('search:save_chart'))
+                    return redirect(reverse('search:all_charts'))
             else:
                 login_form.add_error(None, 'Your username or password are incorrect.')
     else:

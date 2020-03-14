@@ -37,18 +37,20 @@ def pay_subscription(request, pk=None):
     
     subscription_type = get_object_or_404(SubscriptionType, pk=pk) if pk else None
     
-    print('Make payment')
-    #print(subscription_type.name)
-    #print(subscription_type.description)
-    #print(subscription_type.length_months)
-    #print(subscription_type.price)
+    # dependent on there being only one subscription per user!
+    try:
+        existing_user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    except UserSubscription.DoesNotExist:
+        existing_user_subscription = None
 
-    #payment_form = MakePaymentForm()
-
-    # need to stop user paying twice - maybe in profile?
-
-    #'payment_form': payment_form,
-
+    # if the user has an active subscription, redirect them away
+    if existing_user_subscription:
+        existing_end_date = existing_user_subscription.end_date
+        if existing_end_date > timezone.now():
+            messages.error(request, "You have an active subscription that expires on {0}".format(
+                    timezone.localtime(existing_end_date).strftime("%d %b, %Y at %H:%M:%S")))
+            return redirect(reverse('search:all_charts'))
+    
     if request.method == 'POST':
         #print(request.POST.keys())
         #dict_keys(['csrfmiddlewaretoken', 'stripeToken'])
@@ -58,35 +60,35 @@ def pay_subscription(request, pk=None):
 
         if token:
             try:
-                # user must be created to put this in description!
                 charge = stripe.Charge.create(
                     amount=int(subscription_type.price*100),
                     currency='eur',
                     description=request.user.email,
                     source=token,
                 )
-                # go somewhere?
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
 
             if charge.paid:
-                # flag user as paid using UserSubscription?
                 # python manage.py shell
                 # from django.utils import timezone
                 # start_date = timezone.now()
                 start_date = timezone.now()
                 end_date = start_date + relativedelta(months=+subscription_type.length_months)
 
-                # need to check user doesn't already have a valid subscription before payment
-                # need to overwrite old subscription if they create a new one...
-                
-                user_subscription = UserSubscription(
-                    user_id = request.user,
-                    subscription_type_id = subscription_type, 
-                    start_date = start_date,
-                    end_date = end_date
-                )
-                user_subscription.save()
+                if existing_user_subscription:
+                    existing_user_subscription.subscription_type_id = subscription_type
+                    existing_user_subscription.start_date = start_date
+                    existing_user_subscription.end_date = end_date
+                    existing_user_subscription.save()
+                else:   
+                    user_subscription = UserSubscription(
+                        user_id = request.user,
+                        subscription_type_id = subscription_type, 
+                        start_date = start_date,
+                        end_date = end_date
+                    )
+                    user_subscription.save()
 
                 messages.error(request, "You have successfully paid for {0} months".format(subscription_type.length_months))
                 return redirect(reverse('search:all_charts'))

@@ -12,7 +12,10 @@
 
     <div id="draw-here"></div>
 
-    <a class="btn btn-primary" href="{% url 'search:save_chart' %}" role="button">Save Chart</a>
+    <form action="{% url 'search:save_chart' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Save Chart</button>
+    </form>
 
     {{ chart_data|json_script:"bar_data" }}
     <script>
