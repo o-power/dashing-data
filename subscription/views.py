@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import SubscriptionType
+from .models import SubscriptionType, UserSubscription
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
 import stripe
 
@@ -53,7 +55,21 @@ def pay_subscription(request, pk=None):
 
             if charge.paid:
                 # flag user as paid using UserSubscription?
-                messages.error(request, "You have successfully paid")
+                # python manage.py shell
+                # from django.utils import timezone
+                # start_date = timezone.now()
+                start_date = timezone.now()
+                end_date = start_date + relativedelta(months=+subscription_type.length_months)
+
+                user_subscription = UserSubscription(
+                    user_id = request.user,
+                    subscription_type_id = subscription_type, 
+                    start_date = start_date,
+                    end_date = end_date
+                )
+                user_subscription.save()
+
+                messages.error(request, "You have successfully paid for {0} months".format(subscription_type.length_months))
                 return redirect(reverse('search:all_charts'))
             else:
                 messages.error(request, "Unable to take payment")
