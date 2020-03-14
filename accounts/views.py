@@ -38,8 +38,7 @@ def profile(request):
     """A view that displays the profile page of a logged in user."""
     # dependent on there being only one subscription per user!
     user_subscription = UserSubscription.objects.get(user_id=request.user.id)
-    #subscription_type = SubscriptionType.objects.get(user_subscription__pk=user_subscription.id)
-    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription, 'subscription_type': subscription_type})
+    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription})
 
 @login_required
 def logout(request):

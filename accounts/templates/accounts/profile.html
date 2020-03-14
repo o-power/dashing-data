@@ -8,9 +8,9 @@
     <p>{{ user.username }}</p>
     <p>{{ user.password }}</p>
     <p>{{ user_subscription.subscription_type_id }}</p>
-    <p>{{ subscription_type.name }}</p>
-    <p>{{ subscription_type.description }}</p>
-    <p>{{ subscription_type.length_months }}</p>
+    <p>{{ user_subscription.subscription_type_id.name }}</p>
+    <p>{{ user_subscription.subscription_type_id.description }}</p>
+    <p>{{ user_subscription.subscription_type_id.length_months }}</p>
     <p>{{ user_subscription.start_date }}</p>
     <p>{{ user_subscription.end_date }}</p>
 {% endblock %}
