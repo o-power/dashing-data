@@ -13,6 +13,22 @@ stripe.api_key = settings.STRIPE_SECRET
 def choose_subscription(request):
     """ """
     subscription_types = SubscriptionType.objects.all().order_by('length_months')
+
+    # dependent on there being only one subscription per user!
+    try:
+        user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    except UserSubscription.DoesNotExist:
+        user_subscription = None
+
+    if user_subscription:
+        end_date = user_subscription.end_date
+        if end_date > timezone.now():
+            messages.warning(request, "You have an active subscription until {0}".format(
+                timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
+        else:
+            messages.info(request, "Your subscription expired on {0}".format(
+                timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
+
     return render(request, 'subscription/subscriptions.html', {'subscription_types': subscription_types})
 
 @login_required
