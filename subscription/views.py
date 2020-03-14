@@ -61,6 +61,9 @@ def pay_subscription(request, pk=None):
                 start_date = timezone.now()
                 end_date = start_date + relativedelta(months=+subscription_type.length_months)
 
+                # need to check user doesn't already have a valid subscription before payment
+                # need to overwrite old subscription if they create a new one...
+                
                 user_subscription = UserSubscription(
                     user_id = request.user,
                     subscription_type_id = subscription_type, 

@@ -6,6 +6,8 @@ from .models import UserChart, BarChart
 @login_required
 def save_chart(request):
 
+    # needs a post and get to stop charts being created all the time
+
     chart_type = request.session.get('chart_type','')
     user_chart = UserChart(
         user_id = request.user,

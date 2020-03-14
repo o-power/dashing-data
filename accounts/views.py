@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from .forms import UserRegistrationForm, UserLoginForm
+from subscription.models import UserSubscription, SubscriptionType
 from django.contrib import messages, auth
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -35,7 +36,10 @@ def register(request):
 @login_required
 def profile(request):
     """A view that displays the profile page of a logged in user."""
-    return render(request, 'accounts/profile.html')
+    # dependent on there being only one subscription per user!
+    user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    #subscription_type = SubscriptionType.objects.get(user_subscription__pk=user_subscription.id)
+    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription, 'subscription_type': subscription_type})
 
 @login_required
 def logout(request):
