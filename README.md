@@ -29,3 +29,7 @@ Testing cards: https://stripe.com/docs/testing#international-cards
 Stripe Charge instructions: https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
 
 Screenshot of Stripe dashboard.
+
+## Credits
+
+Formatting of messages https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
