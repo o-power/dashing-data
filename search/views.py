@@ -2,9 +2,19 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserChart, BarChart
+from subscription.models import UserSubscription
 
 @login_required
 def save_chart(request):
+
+    try:
+        user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+    except UserSubscription.DoesNotExist:
+        user_subscription = None
+    
+    # a subscription is required to save charts
+    if user_subscription is None:
+        return redirect(reverse('subscription:choose_subscription'))
 
     if request.method == "POST":
 
@@ -41,8 +51,10 @@ def save_chart(request):
         # {'x_data': 'B', 'y_data': 6}, 
         # {'x_data': 'C', 'y_data': 7}]}
         # need to save chart and data
+
+        return redirect(reverse('search:all_charts'))
         
-    # POST and GET go to here
+    # GET go to here
     return redirect(reverse('search:all_charts'))
     
 

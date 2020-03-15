@@ -22,12 +22,16 @@ def choose_subscription(request):
 
     if user_subscription:
         end_date = user_subscription.end_date
-        if end_date > timezone.now():
-            messages.warning(request, "You have an active subscription until {0}".format(
+        if user_subscription.status == 'Active':
+            messages.info(request, "You have an active subscription until {0}".format(
+                timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
+        elif user_subscription.status == 'Expired':
+            messages.warning(request, "Your subscription expired on {0}".format(
                 timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
         else:
-            messages.info(request, "Your subscription expired on {0}".format(
-                timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
+            messages.info(request,"To access all features you need an active subscription.")
+    else:
+        messages.info(request,"To access all features you need a subscription.")
 
     return render(request, 'subscription/subscriptions.html', {'subscription_types': subscription_types})
 
@@ -80,13 +84,15 @@ def pay_subscription(request, pk=None):
                     existing_user_subscription.subscription_type_id = subscription_type
                     existing_user_subscription.start_date = start_date
                     existing_user_subscription.end_date = end_date
+                    existing_user_subscription.status = 'Active'
                     existing_user_subscription.save()
                 else:   
                     user_subscription = UserSubscription(
                         user_id = request.user,
                         subscription_type_id = subscription_type, 
                         start_date = start_date,
-                        end_date = end_date
+                        end_date = end_date,
+                        status = 'Active'
                     )
                     user_subscription.save()
 

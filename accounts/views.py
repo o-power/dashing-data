@@ -23,6 +23,7 @@ def register(request):
             if user is not None:
                 # save user id in the session
                 auth.login(request, user)
+
                 messages.success(request, 'You have successfully registered.')
 
                 return redirect(reverse('subscription:choose_subscription'))
@@ -42,15 +43,8 @@ def profile(request):
         user_subscription = UserSubscription.objects.get(user_id=request.user.id)
     except UserSubscription.DoesNotExist:
         user_subscription = None
-    
-    subscription_status = 'None'
-    if user_subscription:
-        if user_subscription.end_date > timezone.now():
-            subscription_status = 'Active'
-        else:
-            subscription_status = 'Expired'
 
-    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription, 'subscription_status': subscription_status})
+    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription})
 
 @login_required
 def logout(request):
@@ -70,6 +64,18 @@ def login(request):
             if user is not None:
                 # save user id in the session
                 auth.login(request, user)
+
+                # update subscription status
+                # dependent on there being only one subscription per user!
+                try:
+                    user_subscription = UserSubscription.objects.get(user_id=request.user.id)
+                except UserSubscription.DoesNotExist:
+                    user_subscription = None
+                
+                if user_subscription:
+                    if user_subscription.end_date < timezone.now():
+                        user_subscription.status = 'Expired'
+
                 messages.error(request, 'You have successfully logged in.')
 
                 if request.GET and request.GET.get('next') != '':

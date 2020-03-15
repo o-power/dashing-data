@@ -15,6 +15,7 @@ class UserSubscription(models.Model):
     subscription_type_id = models.ForeignKey(SubscriptionType, on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=False)
     end_date = models.DateTimeField(blank=False)
+    status = models.CharField(max_length=20, blank=False, default='None')
 
     def __str__(self):
         return "user_id: " + str(self.user_id) + \

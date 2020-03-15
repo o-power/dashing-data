@@ -12,7 +12,7 @@
     <div class="card-body">
         <h5 class="card-title">{{ subscription_type.name }}</h5>
         <p class="card-text">
-            {{ subscription_type.price }}<br>
+            €{{ subscription_type.price }}<br>
             {{ subscription_type.description }}
         </p>
         <a href="{% url 'subscription:pay_subscription' subscription_type.id %}" class="btn btn-primary">Sign Up</a>

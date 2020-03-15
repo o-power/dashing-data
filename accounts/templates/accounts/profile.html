@@ -13,9 +13,9 @@
     <p>{{ user_subscription.subscription_type_id.length_months }}</p>
     <p>{{ user_subscription.start_date }}</p>
     <p>{{ user_subscription.end_date }}</p>
-    {% if subscription_status == 'Active' %}
+    {% if user_subscription.status == 'Active' %}
     <p>Subscription is active</p>
-    {% elif subscription_status == 'Expired' %}
+    {% elif user_subscription.status == 'Expired' %}
     <p>Subscription is expired</p>
     <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary btn-sm">Renew Subscription</a>
     {% else %}
