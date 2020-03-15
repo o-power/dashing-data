@@ -15,6 +15,9 @@ def save_chart(request):
     # a subscription is required to save charts
     if user_subscription is None:
         return redirect(reverse('subscription:choose_subscription'))
+    # an expired subscription
+    elif user_subscription.status == 'Expired':
+        return redirect(reverse('subscription:choose_subscription'))
 
     if request.method == "POST":
 

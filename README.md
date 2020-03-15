@@ -30,6 +30,8 @@ Stripe Charge instructions: https://stripe.com/docs/payments/accept-a-payment-ch
 
 Screenshot of Stripe dashboard.
 
+## Adding a new chart type
+
 ## Credits
 
 Formatting of messages https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html
