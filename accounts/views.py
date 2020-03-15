@@ -4,6 +4,7 @@ from subscription.models import UserSubscription, SubscriptionType
 from django.contrib import messages, auth
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 def register(request):
     """A view that manages the registration form."""
@@ -41,7 +42,15 @@ def profile(request):
         user_subscription = UserSubscription.objects.get(user_id=request.user.id)
     except UserSubscription.DoesNotExist:
         user_subscription = None
-    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription})
+    
+    subscription_status = 'None'
+    if user_subscription:
+        if user_subscription.end_date > timezone.now():
+            subscription_status = 'Active'
+        else:
+            subscription_status = 'Expired'
+
+    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription, 'subscription_status': subscription_status})
 
 @login_required
 def logout(request):
