@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from subscription.models import UserSubscription
 
-#from django.shortcuts import render, redirect, reverse
-#from .forms import UploadDataForm
-
 def upload_chart(request):
-
+    """
+    A form through which the user uploads data.
+    If method is POST, save data in a session object.
+    If method is GET, render an empty upload data form.
+    """    
     # if the user is not logged in, redirect to login page
     if not request.user.is_authenticated:
         return redirect('{0}?next={1}'.format(settings.LOGIN_URL, request.path))
@@ -27,5 +28,7 @@ def upload_chart(request):
     return render(request, 'linechart/chart.html')
 
 #def create_chart(request):
-#    """Creates line chart"""
+#    """
+#    Render page with bar chart.
+#    """
 #    return render(request, 'linechart/chart.html')
