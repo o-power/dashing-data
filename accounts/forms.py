@@ -41,7 +41,6 @@ class UserRegistrationForm(UserCreationForm):
         Email addresses should be unique (case Insensitive).
         """
         email = self.cleaned_data.get('email')
-        username = self.cleaned_data.get('username')
 
         # If another user has the same email (case insensitive match)
         # or if the email matches another user's username (as letting

@@ -18,17 +18,13 @@ def upload_chart(request):
             # could be decimal!!!!
             y_data = list(map(int, y_data))
 
-            uploaded_data = {}
-            uploaded_data['chart_title'] = chart_title
-
             bar_data = []
             for i in range(0,len(x_data),1):
                 bar_data.append({'x_data': x_data[i], 'y_data': y_data[i]})
             
-            uploaded_data['chart_data'] = bar_data
-
             request.session['chart_type'] = 'bar'
-            request.session['uploaded_data'] = uploaded_data
+            request.session['chart_title'] = chart_title
+            request.session['chart_data'] = bar_data
 
             return redirect(reverse('barchart:create_chart'))
     else:

@@ -3,11 +3,11 @@
 {% block page_title %}Search Saved Charts{% endblock page_title %}
 
 {% block content %}
+    <h1>Saved charts</h1>
 
-    <p>Saved charts</p>
-    <form action="{% url 'search:do_search' %}" method="get">
+    <form method="get" action="{% url 'search:do_search' %}">
         <input type="text" name="q">
-        <button type="search">Search</button>
+        <button type="search" class="btn btn-primary">Search</button>
     </form>
 
     <table class="table">

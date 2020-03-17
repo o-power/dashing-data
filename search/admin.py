@@ -7,5 +7,4 @@ class BarChartAdminInline(admin.TabularInline):
 class UserChartAdmin(admin.ModelAdmin):
     inlines = (BarChartAdminInline, )
 
-#admin.site.unregister(UserChart)
 admin.site.register(UserChart, UserChartAdmin)

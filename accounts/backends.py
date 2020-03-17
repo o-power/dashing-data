@@ -14,7 +14,7 @@ class CaseInsensitiveAuth(BaseBackend):
         users = User.objects.filter(Q(username__iexact=username_or_email) |
                                     Q(email__iexact=username_or_email))
         
-        if users is None:
+        if not users:
             return None
 
         user = users[0]
