@@ -7,9 +7,12 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
 def register(request):
-    """A view that manages the registration form."""
+    """
+    A view that manages the registration form.
+    If method is GET, an empty registration form is rendered.
+    If method is POST, the user is saved and then logged in.
+    """
     if request.method == 'POST':
-        #print('Registration')
         #print(request.POST.keys())
         #dict_keys(['csrfmiddlewaretoken', 'username', 'email', 'password1', 'password2'])
         registration_form = UserRegistrationForm(request.POST)
@@ -37,24 +40,32 @@ def register(request):
 
 @login_required
 def profile(request):
-    """A view that displays the profile page of a logged in user."""
-    # dependent on there being only one subscription per user!
+    """
+    A view that displays the profile page of a logged in user.
+    """
     try:
         user_subscription = UserSubscription.objects.get(user_id=request.user.id)
     except UserSubscription.DoesNotExist:
         user_subscription = None
 
-    return render(request, 'accounts/profile.html', {'user_subscription': user_subscription})
+    context = {'user_subscription': user_subscription}
+    return render(request, 'accounts/profile.html', context)
 
 @login_required
 def logout(request):
-    """A view that logs the user out and redirects back to the index page."""
+    """
+    A view that logs the user out and redirects back to the index page.
+    """
     auth.logout(request)
     messages.success(request, 'You have successfully logged out.')
     return redirect(reverse('home:index'))
 
 def login(request):
-    """A view that manages the login form."""
+    """
+    A view that manages the login form.
+    If method is GET, an empty login form is rendered.
+    If method is POST, the user is logged in.
+    """
     if request.method == 'POST':
         login_form = UserLoginForm(request.POST)
         if login_form.is_valid():
@@ -66,7 +77,6 @@ def login(request):
                 auth.login(request, user)
 
                 # update subscription status
-                # dependent on there being only one subscription per user!
                 try:
                     user_subscription = UserSubscription.objects.get(user_id=request.user.id)
                 except UserSubscription.DoesNotExist:

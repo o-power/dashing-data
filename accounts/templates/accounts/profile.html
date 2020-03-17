@@ -6,7 +6,6 @@
     <h2>Profile</h2>
     <p>You are logged in as {{ user.email }} </p>
     <p>{{ user.username }}</p>
-    <p>{{ user.password }}</p>
     <p>{{ user_subscription.subscription_type_id }}</p>
     <p>{{ user_subscription.subscription_type_id.name }}</p>
     <p>{{ user_subscription.subscription_type_id.description }}</p>
@@ -17,10 +16,10 @@
     <p>Subscription is active</p>
     {% elif user_subscription.status == 'Expired' %}
     <p>Subscription is expired</p>
-    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary btn-sm">Renew Subscription</a>
+    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary" role="button">Renew Subscription</a>
     {% else %}
     <p>No Subscription</p>
-    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary btn-sm">Choose Subscription</a>
+    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary" role="button">Choose Subscription</a>
     {% endif %}
     <!-- button to renew subscription -->
 {% endblock %}

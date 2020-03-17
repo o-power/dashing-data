@@ -8,15 +8,12 @@ class CaseInsensitiveAuth(BaseBackend):
     """
     def authenticate(self, username_or_email=None, password=None):
         """
-        Get an instance of User using the supplied username
+        Return an instance of User using the supplied username
         or email (case insensitive) and verify the password.
         """
-        # Filter users by searching for a case-insensitive match by username or email
         users = User.objects.filter(Q(username__iexact=username_or_email) |
                                     Q(email__iexact=username_or_email))
-        print('Hello custom authenticate')
-        print(users)
-
+        
         if users is None:
             return None
 
