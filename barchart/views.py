@@ -14,9 +14,8 @@ def upload_chart(request):
             chart_title = upload_data_form.cleaned_data['chart_title']
             x_data = upload_data_form.cleaned_data['x_data'].splitlines()
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
-
-            # could be decimal!!!!
-            y_data = list(map(int, y_data))
+            
+            y_data = list(map(float, y_data))
 
             bar_data = []
             for i in range(0,len(x_data),1):
