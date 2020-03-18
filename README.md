@@ -20,6 +20,10 @@ Migrate
 The password reset email comes from the Gmail account noreplydashingdata@gmail.com. When the app is ran locally, the email is printed to the console if the env.py file is found.
 
 The template for the email is in the folder templates/registration.
+password_reset_email.html
+password_reset_subject.txt
+
+The passowrd email is only sent if the email exists for a registered user.
 
 ## Subscriptions
 
