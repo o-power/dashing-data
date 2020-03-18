@@ -11,10 +11,11 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required
 def choose_subscription(request):
-    """ """
+    """
+    View that displays the subscription types to the user.
+    """
     subscription_types = SubscriptionType.objects.all().order_by('length_months')
 
-    # dependent on there being only one subscription per user!
     try:
         user_subscription = UserSubscription.objects.get(user_id=request.user.id)
     except UserSubscription.DoesNotExist:
@@ -37,11 +38,13 @@ def choose_subscription(request):
 
 @login_required
 def pay_subscription(request, pk=None):
-    """ """
-    
+    """
+    A view that takes payment for a subscription.
+    If method is POST, take payment if there is no active subscription.
+    If method is GET, render a page with the Stripe card element.
+    """
     subscription_type = get_object_or_404(SubscriptionType, pk=pk) if pk else None
     
-    # dependent on there being only one subscription per user!
     try:
         existing_user_subscription = UserSubscription.objects.get(user_id=request.user.id)
     except UserSubscription.DoesNotExist:
@@ -58,8 +61,7 @@ def pay_subscription(request, pk=None):
     if request.method == 'POST':
         #print(request.POST.keys())
         #dict_keys(['csrfmiddlewaretoken', 'stripeToken'])
-        # Token is created using Stripe Checkout or Elements!
-        # Get the payment token ID submitted by the form:
+        # Get the payment token ID submitted by the form
         token = request.POST.get('stripeToken', False)
 
         if token:
@@ -71,12 +73,9 @@ def pay_subscription(request, pk=None):
                     source=token,
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
+                messages.error(request, "Your card was declined.")
 
             if charge.paid:
-                # python manage.py shell
-                # from django.utils import timezone
-                # start_date = timezone.now()
                 start_date = timezone.now()
                 end_date = start_date + relativedelta(months=+subscription_type.length_months)
 
@@ -99,8 +98,9 @@ def pay_subscription(request, pk=None):
                 messages.error(request, "You have successfully paid for {0} months".format(subscription_type.length_months))
                 return redirect(reverse('search:all_charts'))
             else:
-                messages.error(request, "Unable to take payment")
+                messages.error(request, "Unable to take payment.")
         else:
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(request, "We were unable to take a payment with that card.")
 
-    return render(request, 'subscription/payment.html', { 'publishable': settings.STRIPE_PUBLISHABLE, 'subscription_type': subscription_type})
+    context = {'publishable': settings.STRIPE_PUBLISHABLE, 'subscription_type': subscription_type}
+    return render(request, 'subscription/payment.html', context)
