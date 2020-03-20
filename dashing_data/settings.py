@@ -12,23 +12,28 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+import dj_database_url
 
-if os.path.exists('env.py'):
+DEVELOPMENT = os.environ.get('DEVELOPMENT') == 'TRUE'
+if DEVELOPMENT:
     import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if DEVELOPMENT:
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = []
+if DEVELOPMENT:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
 
 # Application definition
 
@@ -84,12 +89,18 @@ WSGI_APPLICATION = 'dashing_data.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEVELOPMENT:
+    print('DEVELOPMENT set to True. Using SQLite.')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -168,8 +179,6 @@ if USE_S3:
     MEDIAFILES_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
-    ###### might need to add a context processor for media
 else:
     # folder where static files will be collected by collectstatic
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -188,7 +197,7 @@ STATICFILES_DIRS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # email backend for password reset
-if os.path.exists('env.py'):
+if DEVELOPMENT:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

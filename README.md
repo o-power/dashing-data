@@ -36,6 +36,15 @@ Screenshot of Stripe dashboard.
 
 ## Adding a new chart type
 
+## Deployment
+
+Heroku
+Disable the collectstatic build step which Heroku runs on your behalf:
+DISABLE_COLLECTSTATIC = 1
+
+Django deployment checklist
+https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+
 ## Credits
 
 Formatting of messages https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html

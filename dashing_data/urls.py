@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from home import urls as urls_home
 from accounts import urls as urls_accounts
 from search import urls as urls_search
@@ -31,3 +33,8 @@ urlpatterns = [
     path('linechart/', include(urls_linechart)),
     path('subscription/', include(urls_subscription))
 ]
+
+# Django does not serve media files in DEBUG mode
+if settings.DEBUG and not settings.USE_S3:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
