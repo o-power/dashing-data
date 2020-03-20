@@ -16,8 +16,9 @@ import dj_database_url
 
 if os.path.exists('env.py'):
     import env
-
-DEVELOPMENT = os.environ.get('DEVELOPMENT') == 'TRUE'
+    DEBUG = True
+else:
+    DEBUG = False
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,13 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-if DEVELOPMENT:
-    DEBUG = True
-else:
-    DEBUG = False
-
-if DEVELOPMENT:
+if DEBUG:
     ALLOWED_HOSTS = []
 else:
     ALLOWED_HOSTS = [os.environ.get('HOSTNAME')]
@@ -90,8 +85,8 @@ WSGI_APPLICATION = 'dashing_data.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if DEVELOPMENT:
-    print('DEVELOPMENT set to True. Using SQLite.')
+if DEBUG:
+    print('DEBUG is on. Using SQLite.')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -198,7 +193,7 @@ STATICFILES_DIRS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # email backend for password reset
-if DEVELOPMENT:
+if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
