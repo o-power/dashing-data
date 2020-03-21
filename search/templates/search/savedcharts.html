@@ -3,15 +3,28 @@
 {% block page_title %}Search Saved Charts{% endblock page_title %}
 
 {% block content %}
-    <h1>Saved charts</h1>
-
-    <form method="get" action="{% url 'search:do_search' %}">
-        <input type="text" name="q">
-        <button type="search" class="btn btn-primary">Search</button>
-    </form>
-
+<div class="row mt-4">
+    <div class="col text-center">
+        <h1>Saved Charts</h1>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        <form method="get" action="{% url 'search:do_search' %}">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" name="q">
+                </div>
+                <div class="col">
+                    <button type="search" class="custom-btn">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="table-responsive mt-4">
     <table class="table">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Type</th>
@@ -39,7 +52,7 @@
             <tr>
                 <th scope="row"></th>
                 <td></td>
-                <td>No matching saved charts found</td>
+                <td class="text-center">No matching saved charts found</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -47,5 +60,5 @@
             {% endfor %}
         </tbody>
     </table>
-    
+</div>
 {% endblock %}

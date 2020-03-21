@@ -30,9 +30,9 @@ def choose_subscription(request):
             messages.warning(request, "Your subscription expired on {0}".format(
                 timezone.localtime(end_date).strftime("%d %b, %Y at %H:%M:%S")))
         else:
-            messages.info(request,"To access all features you need an active subscription.")
+            messages.warning(request,"To access all features you need an active subscription.")
     else:
-        messages.info(request,"To access all features you need a subscription.")
+        messages.warning(request,"To access all features you need a subscription.")
 
     return render(request, 'subscription/subscriptions.html', {'subscription_types': subscription_types})
 

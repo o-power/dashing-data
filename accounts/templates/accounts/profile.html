@@ -3,23 +3,93 @@
 {% block page_title %}Profile{% endblock page_title %}
 
 {% block content %}
-    <h2>Profile</h2>
-    <p>You are logged in as {{ user.email }} </p>
-    <p>{{ user.username }}</p>
-    <p>{{ user_subscription.subscription_type_id }}</p>
-    <p>{{ user_subscription.subscription_type_id.name }}</p>
-    <p>{{ user_subscription.subscription_type_id.description }}</p>
-    <p>{{ user_subscription.subscription_type_id.length_months }}</p>
-    <p>{{ user_subscription.start_date }}</p>
-    <p>{{ user_subscription.end_date }}</p>
-    {% if user_subscription.status == 'Active' %}
-    <p>Subscription is active</p>
-    {% elif user_subscription.status == 'Expired' %}
-    <p>Subscription is expired</p>
-    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary" role="button">Renew Subscription</a>
-    {% else %}
-    <p>No Subscription</p>
-    <a href="{% url 'subscription:choose_subscription' %}" class="btn btn-primary" role="button">Choose Subscription</a>
+<div class="row mt-4">
+    <div class="col">
+        <h1>Your Profile</h1>
+    </div>
+</div>
+<div class="row mt-4">
+    <!-- Username -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Username:</p>
+            </div>
+            <div class="value">
+                <p>{{ user.username }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Email -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Email:</p>
+            </div>
+            <div class="value">
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Subscription -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Subscription Plan:</p>
+            </div>
+            <div class="value">
+                {% if user_subscription.status == 'Active' or user_subscription.status == 'Expired' %}
+                <p>{{ user_subscription.subscription_type_id.name }}</p>
+                {% else %}
+                <p>None</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if user_subscription.status == 'Active' or user_subscription.status == 'Expired' %}
+    <!-- Subscription Status -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Subscription Status:</p>
+            </div>
+            <div class="value">
+                <p>{{ user_subscription.status }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Subscription Start -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Subscription Start Date:</p>
+            </div>
+            <div class="value">
+                <p>{{ user_subscription.start_date }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Subscription End -->
+    <div class="col-12 col-lg-6">
+        <div class="personal-info-item mt-4">
+            <div class="key">
+                <p>Subscription End Date:</p>
+            </div>
+            <div class="value">
+                <p>{{ user_subscription.end_date }}</p>
+            </div>
+        </div>
+    </div>
     {% endif %}
-    <!-- button to renew subscription -->
+    {% if user_subscription.status != 'Active' %}
+    <!-- Button -->
+    <div class="col-12 text-center mt-4">
+        {% if user_subscription.status == 'Expired' %}
+        <a href="{% url 'subscription:choose_subscription' %}" class="custom-btn" role="button">Renew Subscription</a>
+        {% else %}
+        <a href="{% url 'subscription:choose_subscription' %}" class="custom-btn" role="button">Choose Subscription</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

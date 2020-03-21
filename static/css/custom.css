@@ -57,3 +57,29 @@
     border-color: #004599;
     text-decoration: none;
 }
+
+/* Profile page */
+.personal-info-item .key {
+    display: inline-block;
+    width: 40%;
+}
+
+.personal-info-item .value {
+    display: inline-block;
+    width: 50%;
+}
+
+.personal-info-item .key p {
+    font-weight: bold;
+}
+
+.personal-info-item p {
+    margin: 0;
+}
+
+/* messages */
+.alert-warning {
+    color: #343a40;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
