@@ -63,6 +63,18 @@ Create an env.py file (need a stripe account and test api keys)
 Makemigrations
 Migrate
 
+USE_S3
+SECRET_KEY
+EMAIL_ADDRESS
+EMAIL_PASSWORD
+STRIPE_PUBLISHABLE
+STRIPE_SECRET
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+DATABASE_URL
+HOSTNAME
+
+
 ## Password reset
 
 The password reset email comes from the Gmail account noreplydashingdata@gmail.com. When the app is ran locally, the email is printed to the console if the env.py file is found.
