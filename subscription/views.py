@@ -95,7 +95,7 @@ def pay_subscription(request, pk=None):
                     )
                     user_subscription.save()
 
-                messages.error(request, "You have successfully paid for {0} months".format(subscription_type.length_months))
+                messages.error(request, "You have successfully paid for {0} month(s)".format(subscription_type.length_months))
                 return redirect(reverse('search:all_charts'))
             else:
                 messages.error(request, "Unable to take payment.")

@@ -1,3 +1,8 @@
+/* stops content being hid by navbar */
+body {
+    padding-top: 59px;
+}
+
 /* Style navbar */
 .custom-nav-border {
     border-bottom: 3px #dd3d31 solid;
@@ -75,11 +80,4 @@
 
 .personal-info-item p {
     margin: 0;
-}
-
-/* messages */
-.alert-warning {
-    color: #343a40;
-    background-color: #ffc107;
-    border-color: #ffc107;
 }

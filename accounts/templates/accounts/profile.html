@@ -83,7 +83,7 @@
     {% endif %}
     {% if user_subscription.status != 'Active' %}
     <!-- Button -->
-    <div class="col-12 text-center mt-4">
+    <div class="col-12 mt-4">
         {% if user_subscription.status == 'Expired' %}
         <a href="{% url 'subscription:choose_subscription' %}" class="custom-btn" role="button">Renew Subscription</a>
         {% else %}
