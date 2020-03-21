@@ -7,7 +7,8 @@ def upload_chart(request):
     A form through which the user uploads data.
     If method is POST, save data in a session object.
     If method is GET, render an empty upload data form.
-    """    
+    """
+    
     # if the user is not logged in, redirect to login page
     if not request.user.is_authenticated:
         return redirect('{0}?next={1}'.format(settings.LOGIN_URL, request.path))

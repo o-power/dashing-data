@@ -1,3 +1,4 @@
+/* Style navbar */
 .custom-nav-border {
     border-bottom: 3px #dd3d31 solid;
 }
@@ -21,4 +22,38 @@
 
 .custom-dropdown-item {
     color: #FFF;
+}
+
+.custom-dropdown-item:hover {
+    color: #FFF;
+    text-decoration: none;
+    background-color: #004599;
+}
+
+/* Style buttons */
+.custom-btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #002e66;
+    border: 1px solid #002e66;;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.custom-btn:hover {
+    color: #FFF;
+    background-color: #004599;
+    border-color: #004599;
+    text-decoration: none;
 }
