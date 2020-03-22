@@ -93,3 +93,8 @@ body {
 .table td, .table th {
     vertical-align: middle;
 }
+
+.table.chart-data-table td, .table th {
+    vertical-align: middle;
+    text-align: center;
+}
