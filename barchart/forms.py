@@ -29,11 +29,28 @@ class UploadDataForm(forms.Form):
         y_data = self.cleaned_data['y_data']
 
         parsed_y_data = y_data.splitlines()
-        print(parsed_y_data)
         
         try:
             parsed_y_data = list(map(float, parsed_y_data))
         except ValueError:
-            raise forms.ValidationError("y data must be numeric")
+            raise forms.ValidationError('y data must be numeric')
 
         return y_data
+    
+    def clean(self):
+        """
+        Number of entries in x and y data should be the same.
+        """
+        cleaned_data = super().clean()
+        x_data = cleaned_data.get('x_data')
+        y_data = cleaned_data.get('y_data')
+
+        if x_data and y_data:
+            # Only do something if both fields are valid so far.
+            parsed_x_data = x_data.splitlines()
+            parsed_y_data = y_data.splitlines()
+            
+            if len(parsed_x_data) != len(parsed_y_data):
+                raise forms.ValidationError(
+                    'Number of y values must match number of x values'
+                )
