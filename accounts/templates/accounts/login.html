@@ -5,33 +5,35 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<h1>Login</h1>
-<form method="post" action="{% url 'accounts:login' %}?next={{ next }}">
-    {% csrf_token %}
-    
-    <div class="row">
-        <div class="col">
-            {{ login_form | crispy }}
-            <p><a href="{% url 'accounts:password_reset' %}">Forgot my password</a></p>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <div class="col">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</form>
-
-<div class="form-group row">
+<div class="row mt-4">
     <div class="col">
-        New to Dashing Data?
+        <h1>Login</h1>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        <form method="post" action="{% url 'accounts:login' %}?next={{ next }}">
+            {% csrf_token %}
+            
+            <div class="row">
+                <div class="col">
+                    {{ login_form | crispy }}
+                    <p><a href="{% url 'accounts:password_reset' %}">Forgot password?</a></p>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col">
+                    <button type="submit" class="custom-btn">Login</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
 <div class="row">
     <div class="col">
-        <a class="btn btn-primary" href="{% url 'accounts:register' %}?next={{ next }}" role="button">Register</a>
+        <p>New to Dashing Data? <a href="{% url 'accounts:register' %}?next={{ next }}">Register here</a></p>
     </div>
 </div>
 {% endblock %}

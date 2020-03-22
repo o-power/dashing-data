@@ -43,16 +43,16 @@
                 <td>{{ chart.date_created }}</td>
                 <td></td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm">View</button>
-                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                    <a href="{% url 'search:delete_chart' chart.id %}" class="btn btn-primary btn-sm">Delete</a>
+                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    <a href="{% url 'search:delete_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
             {% empty %}
             <tr>
                 <th scope="row"></th>
                 <td></td>
-                <td class="text-center">No matching saved charts found</td>
+                <td class="text-center">No saved charts found</td>
                 <td></td>
                 <td></td>
                 <td></td>
