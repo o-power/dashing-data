@@ -12,6 +12,7 @@ def upload_chart(request):
 
         if upload_data_form.is_valid():        
             chart_title = upload_data_form.cleaned_data['chart_title']
+            chart_subtitle = upload_data_form.cleaned_data['chart_subtitle']
             x_data = upload_data_form.cleaned_data['x_data'].splitlines()
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
             
@@ -23,6 +24,7 @@ def upload_chart(request):
             
             request.session['chart_type'] = 'bar'
             request.session['chart_title'] = chart_title
+            request.session['chart_subtitle'] = chart_subtitle
             request.session['chart_data'] = bar_data
 
             return redirect(reverse('barchart:create_chart'))

@@ -10,6 +10,12 @@ class UploadDataForm(forms.Form):
         required=True,
     )
 
+    chart_subtitle = forms.CharField(
+        label='Chart Subtitle',
+        max_length=254,
+        required=False,
+    )
+
     x_data = forms.CharField(
         label='X Data',
         widget=forms.Textarea,

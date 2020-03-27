@@ -112,6 +112,7 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 ### Content
 - Method for making D3.js charts responsive taken from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
+- Method for making left margin of chart match width of x label taken from [stackoverflow](// https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020]. 
 - Formatting of messages using bootstrap classes taken from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html) [accessed 21st March 2020].
 
 ### Media

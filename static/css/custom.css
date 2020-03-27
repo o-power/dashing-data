@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* stops content being hid by navbar */
 body {
     padding-top: 59px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
 }
 
 /* Style navbar */
@@ -65,6 +69,8 @@ body {
 
 .custom-btn.custom-btn-sm {
     padding: .25rem .5rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
     font-size: .875rem;
     line-height: 1.5;
     border-radius: .2rem;
@@ -97,4 +103,27 @@ body {
 .table.chart-data-table td, .table th {
     vertical-align: middle;
     text-align: center;
+}
+
+/* Style chart */
+#chart-container {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    padding: 15px 15px;
+}
+
+#chart-title {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+#chart-subtitle {
+    font-size: 12px;
+    padding-bottom: 5px;
+}
+
+.custom-axis {
+    font-family: 'Roboto', sans-serif;
 }

@@ -16,13 +16,15 @@ const x = d3.scaleBand()
     .domain(data.map(function (d) { return d.x_data; }))
     .padding([0.2]);
 
-const xAxis = chartArea.append("g");
+const xAxis = chartArea.append("g")
+                       .attr("class", "custom-axis");
 
 // y axis
 const y = d3.scaleLinear()
     .domain([0, d3.max(data, function (d) { return d.y_data; })]);
 
-const yAxis = chartArea.append("g");
+const yAxis = chartArea.append("g")
+                       .attr("class", "custom-axis");
 
 // bars
 const bars = chartArea.selectAll("bars")
@@ -38,34 +40,60 @@ function drawChart() {
     const margin = {
         top: 0.05 * currentWidth,
         bottom: 0.10 * currentWidth,
-        left: 0.15 * currentWidth,
+        left: 0,
         right: 0.05 * currentWidth
     };
-    const height = Math.round(currentWidth / aspectRatio) - margin.top - margin.bottom;
+    const outerHeight = Math.round(currentWidth / aspectRatio);
+    let innerHeight = outerHeight - margin.top - margin.bottom;
 
     svg.attr("width", currentWidth)
-        .attr("height", height + margin.top + margin.bottom);
+       .attr("height", outerHeight);
 
-    // allow some margin
+    // update y axis
+    y.range([innerHeight, 0]);
+
+    yAxis.call(d3.axisLeft(y));
+
+    // update margin left based on label size
+    margin.left = 0;
+    yAxis.selectAll("text").each(function () {
+        if (this.getBBox().width > margin.left) {
+            margin.left = this.getBBox().width;
+        }
+    });
+    margin.left = margin.left + 15; // add a little extra for tick marks
+
     chartArea.attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
     // update x axis
     x.range([0, currentWidth - margin.left - margin.right]);
 
-    xAxis.attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+    xAxis.attr("transform", "translate(0," + innerHeight + ")")        
+         .call(d3.axisBottom(x));
+    
+    // update margin bottom based on label size
+    margin.bottom = 0;
+    xAxis.selectAll("text").each(function () {
+        if (this.getBBox().height > margin.bottom) {
+            margin.bottom = this.getBBox().height;
+        }
+    });
+    margin.bottom = margin.bottom + 15; // add a little extra for tick marks
 
-    // update y axis
-    y.range([height, 0]);
+    innerHeight = outerHeight - margin.top - margin.bottom;
+
+    y.range([innerHeight, 0]);
 
     yAxis.call(d3.axisLeft(y));
+
+    xAxis.attr("transform", "translate(0," + innerHeight + ")");
 
     // update bars
     bars.attr("x", function (d) { return x(d.x_data); })
         .attr("width", x.bandwidth())
         .attr("y", function (d) { return y(d.y_data); })
-        .attr("height", function (d) { return height - y(d.y_data); });
+        .attr("height", function (d) { return innerHeight - y(d.y_data); });
 }
 
 // initialize the chart

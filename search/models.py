@@ -5,6 +5,7 @@ class UserChart(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     chart_type = models.CharField(max_length=50)
     title = models.CharField(max_length=254)
+    subtitle = models.CharField(max_length=254, blank=True, default='')
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

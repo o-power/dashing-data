@@ -28,7 +28,8 @@ def save_chart(request):
         user_chart = UserChart(
             user_id = request.user,
             chart_type = request.session.get('chart_type',''),
-            title = request.session.get('chart_title','')
+            title = request.session.get('chart_title',''),
+            subtitle = request.session.get('chart_subtitle','')
         )
         user_chart.save()
 

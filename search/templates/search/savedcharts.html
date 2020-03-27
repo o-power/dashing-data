@@ -27,11 +27,10 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Type</th>
-                <th scope="col">Title</th>
-                <th scope="col">Date Created</th>
-                <th scope="col">Views</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class="text-left">Type</th>
+                <th scope="col" class="text-left">Title</th>
+                <th scope="col" class="text-left">Date Created</th>
+                <th scope="col" class="text-left">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -41,11 +40,10 @@
                 <td>{{ chart.chart_type }}</td>
                 <td>{{ chart.title }}</td>
                 <td>{{ chart.date_created }}</td>
-                <td></td>
-                <td>
-                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <a href="{% url 'search:delete_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                <td class="text-left">
+                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></button>
+                    <button type="button" class="custom-btn custom-btn-sm"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></button>
+                    <a href="{% url 'search:delete_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></a>
                 </td>
             </tr>
             {% empty %}
@@ -53,7 +51,6 @@
                 <th scope="row"></th>
                 <td></td>
                 <td class="text-center">No saved charts found</td>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>
