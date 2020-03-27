@@ -5,22 +5,44 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <p>Hello</p>
-    <form action="" method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-12">
-                {{ upload_data_form.chart_title|as_crispy_field }}
+<div class="row mt-4">
+    <div class="col text-center">
+        <h1>Upload Data</h1>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col">
+        <form method="post" action="{% url 'linechart:upload_chart' %}">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-12">
+                    {{ upload_data_form.chart_title|as_crispy_field }}
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                {{ upload_data_form.x_data|as_crispy_field }}
+            <div class="form-group row">
+                <div class="col-12">
+                    {{ upload_data_form.chart_subtitle|as_crispy_field }}
+                </div>
             </div>
-            <div class="col-6">
-                {{ upload_data_form.y_data|as_crispy_field }}
+            <div class="row">
+                <div class="col-12">
+                    {{ upload_data_form|as_crispy_errors }}
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+            <div class="form-group row">
+                <div class="col-6">
+                    {{ upload_data_form.x_data|as_crispy_field }}
+                </div>
+                <div class="col-6">
+                    {{ upload_data_form.y_data|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="custom-btn">Upload</button>
+                </div>
+            </div>            
+        </form>
+    </div>
+</div>
 {% endblock %}

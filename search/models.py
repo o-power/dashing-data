@@ -20,3 +20,12 @@ class BarChart(models.Model):
     def __str__(self):
         return " chart_id: " + str(self.chart_id) + \
             " row_id: " + str(self.pk)
+
+class LineChart(models.Model):
+    chart_id = models.ForeignKey(UserChart, on_delete=models.CASCADE)
+    x_data = models.CharField(max_length=50)
+    y_data = models.DecimalField(max_digits=14, decimal_places=5)
+
+    def __str__(self):
+        return " chart_id: " + str(self.chart_id) + \
+            " row_id: " + str(self.pk)

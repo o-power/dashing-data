@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import UserChart, BarChart
+from .models import UserChart, BarChart, LineChart
 from subscription.models import UserSubscription
+from django.contrib import messages
 
 @login_required
 def save_chart(request):
@@ -35,9 +36,6 @@ def save_chart(request):
 
         chart_data = request.session.get('chart_data', [])
 
-        # check if empty list?
-        
-        # should we only save user_chart when we know everything is ok with data?
         if chart_type == 'bar':
             for row in chart_data:
                 bar_chart = BarChart(
@@ -46,10 +44,16 @@ def save_chart(request):
                     y_data = row['y_data']
                 )
                 bar_chart.save()
+        elif chart_type == 'line':
+            for row in chart_data:
+                line_chart = LineChart(
+                    chart_id = user_chart,
+                    x_data = row['x_data'],
+                    y_data = row['y_data']
+                )
+                line_chart.save()
         else:
-            print('Missing bar chart')
-
-        # clear session variable?
+            messages.error(request, 'Unable to save chart.')
 
         return redirect(reverse('search:all_charts'))
         

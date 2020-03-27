@@ -86,7 +86,7 @@ def login(request):
                     if user_subscription.end_date < timezone.now():
                         user_subscription.status = 'Expired'
 
-                messages.error(request, 'You have successfully logged in.')
+                messages.success(request, 'You have successfully logged in.')
 
                 if request.GET and request.GET.get('next') != '':
                     next = request.GET.get('next')
