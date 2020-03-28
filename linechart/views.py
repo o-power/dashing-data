@@ -3,6 +3,7 @@ from .forms import UploadDataForm
 from django.contrib import messages
 from django.conf import settings
 from subscription.models import UserSubscription
+from datetime import datetime
 
 def upload_chart(request):
     """
@@ -35,11 +36,12 @@ def upload_chart(request):
         if upload_data_form.is_valid():        
             chart_title = upload_data_form.cleaned_data['chart_title']
             chart_subtitle = upload_data_form.cleaned_data['chart_subtitle']
+            date_format = upload_data_form.cleaned_data['date_format']
             x_data = upload_data_form.cleaned_data['x_data'].splitlines()
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
             
             y_data = list(map(float, y_data))
-
+            
             line_data = []
             for i in range(0,len(x_data),1):
                 line_data.append({'x_data': x_data[i], 'y_data': y_data[i]})
@@ -47,6 +49,7 @@ def upload_chart(request):
             request.session['chart_type'] = 'line'
             request.session['chart_title'] = chart_title
             request.session['chart_subtitle'] = chart_subtitle
+            request.session['date_format'] = date_format
             request.session['chart_data'] = line_data
 
             return redirect(reverse('linechart:create_chart'))

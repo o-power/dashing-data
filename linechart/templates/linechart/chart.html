@@ -57,6 +57,7 @@
   </table>
 </div>
 
+{{ date_format|json_script:"date_format" }}
 {{ chart_data|json_script:"line_data" }}
 <script type="text/javascript" src="{% static 'js/linechart.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/downloadimage.js' %}"></script>

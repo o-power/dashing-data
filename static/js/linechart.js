@@ -9,12 +9,15 @@ const svg = d3.select("#draw-here")
 const chartArea = svg.append("g");
 
 // parse the data
-const data = JSON.parse(document.getElementById("line_data").textContent);
+const unparsed_data = JSON.parse(document.getElementById("line_data").textContent);
+const date_format = JSON.parse(document.getElementById("date_format").textContent);
+const parseTime = d3.timeParse(date_format);
+data = unparsed_data.map(function (d) { return {"x_data": parseTime(d.x_data), "y_data": d.y_data}; })
 
 // x axis
 const x = d3.scaleBand()
-    .domain(data.map(function (d) { return d.x_data; }))
-    .padding([0.2]);
+            .domain(data.map(function (d) { return d.x_data; }))
+            .padding([0.2]);
 
 const xAxis = chartArea.append("g")
                        .attr("class", "custom-axis");
