@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import UploadDataForm
+from django.contrib import messages
 from django.conf import settings
 from subscription.models import UserSubscription
 
@@ -12,6 +13,7 @@ def upload_chart(request):
     
     # if the user is not logged in, redirect to login page
     if not request.user.is_authenticated:
+        messages.warning(request, 'To access all features please login.')
         return redirect('{0}?next={1}'.format(settings.LOGIN_URL, request.path))
     # else if user is logged in, check subscription
     else:

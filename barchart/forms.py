@@ -39,7 +39,7 @@ class UploadDataForm(forms.Form):
         try:
             parsed_y_data = list(map(float, parsed_y_data))
         except ValueError:
-            raise forms.ValidationError('y data must be numeric')
+            raise forms.ValidationError('y data must be numeric.')
 
         return y_data
     
@@ -58,5 +58,5 @@ class UploadDataForm(forms.Form):
             
             if len(parsed_x_data) != len(parsed_y_data):
                 raise forms.ValidationError(
-                    'Number of y values must match number of x values'
+                    'Number of y values must match number of x values.'
                 )
