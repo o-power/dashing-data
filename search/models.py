@@ -23,6 +23,7 @@ class BarChart(models.Model):
 
 class LineChart(models.Model):
     chart_id = models.ForeignKey(UserChart, on_delete=models.CASCADE)
+    date_format = models.CharField(max_length=50, default='')
     x_data = models.CharField(max_length=50)
     y_data = models.DecimalField(max_digits=14, decimal_places=5)
 

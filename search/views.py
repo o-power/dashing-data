@@ -48,6 +48,7 @@ def save_chart(request):
             for row in chart_data:
                 line_chart = LineChart(
                     chart_id = user_chart,
+                    date_format = request.session.get('date_format',''),
                     x_data = row['x_data'],
                     y_data = row['y_data']
                 )
