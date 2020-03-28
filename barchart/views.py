@@ -17,6 +17,7 @@ def upload_chart(request):
             y_data = upload_data_form.cleaned_data['y_data'].splitlines()
             
             y_data = list(map(float, y_data))
+            print(y_data)
 
             bar_data = []
             for i in range(0,len(x_data),1):
