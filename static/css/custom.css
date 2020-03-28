@@ -127,3 +127,14 @@ body {
 .custom-axis {
     font-family: 'Roboto', sans-serif;
 }
+
+.grid line {
+    stroke: lightgrey;
+    stroke-opacity: 0.6;
+    shape-rendering: crispEdges;
+    stroke-dasharray: 3,3;
+}
+
+.grid path {
+    stroke-width: 0;
+}

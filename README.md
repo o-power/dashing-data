@@ -109,6 +109,7 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 - Responsive D3.js code adapted from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
 - Dynamic D3.js left margin adapted from [stackoverflow](// https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020].
 - Download svg to image functionality taken from [Nikita Rokotyan's Block](http://bl.ocks.org/Rokotyan/0556f8facbaf344507cdc45dc3622177) [accessed 27th March 2020].
+- Code for D3.js gridlines adapted from [Sam Hooker's Block](http://bl.ocks.org/35degrees/23873a64ceec2390c400694b6a8b57d9) [accessed 28th March 2020].
 - Formatting of messages using bootstrap classes taken from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html) [accessed 21st March 2020].
 
 ### Media

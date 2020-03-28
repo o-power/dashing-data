@@ -15,13 +15,12 @@ const parseTime = d3.timeParse(date_format);
 data = unparsed_data.map(function (d) { return {"x_data": parseTime(d.x_data), "y_data": d.y_data}; })
 
 // x axis
-const x = d3.scaleBand()
-            .domain(data.map(function (d) { return d.x_data; }))
-            .padding([0.2]);
+const x = d3.scaleTime()
+            .domain(d3.extent(data, function(d) { return d.x_data; }));
 
 const xAxis = chartArea.append("g")
                        .attr("class", "custom-axis");
-
+                       
 // y axis
 const y = d3.scaleLinear()
     .domain([0, d3.max(data, function (d) { return d.y_data; })]);
@@ -29,12 +28,20 @@ const y = d3.scaleLinear()
 const yAxis = chartArea.append("g")
                        .attr("class", "custom-axis");
 
-// bars
-const bars = chartArea.selectAll("bars")
-    .data(data)
-    .enter()
-    .append("rect")
-    .attr("fill", "#004599");
+// line
+const lines = chartArea.append("path")
+                       .datum(data)
+                       .attr("fill", "none")
+                       .attr("stroke", "#004599")
+                       .attr("stroke-width", 2);
+
+// x grid lines
+const x_grid_lines = chartArea.append("g")			
+                              .attr("class", "grid");
+                              
+// y grid lines
+const y_grid_lines = chartArea.append("g")
+                              .attr("class", "grid");
 
 // A function that finishes drawing the chart
 function drawChart() {
@@ -47,6 +54,7 @@ function drawChart() {
         right: 0.05 * currentWidth
     };
     const outerHeight = Math.round(currentWidth / aspectRatio);
+    let innerWidth = currentWidth - margin.left - margin.right;
     let innerHeight = outerHeight - margin.top - margin.bottom;
 
     svg.attr("width", currentWidth)
@@ -70,10 +78,14 @@ function drawChart() {
         "translate(" + margin.left + "," + margin.top + ")");
 
     // update x axis
-    x.range([0, currentWidth - margin.left - margin.right]);
+    innerWidth = currentWidth - margin.left - margin.right;
 
-    xAxis.attr("transform", "translate(0," + innerHeight + ")")        
-         .call(d3.axisBottom(x));
+    x.range([0, innerWidth]);
+
+    xAxis.attr("transform", "translate(0," + innerHeight + ")")      
+         .call(d3.axisBottom(x)
+                 .ticks(parseInt(Math.max(innerWidth/50, 2)))
+              );
     
     // update margin bottom based on label size
     margin.bottom = 0;
@@ -88,15 +100,31 @@ function drawChart() {
 
     y.range([innerHeight, 0]);
 
-    yAxis.call(d3.axisLeft(y));
+    yAxis.call(d3.axisLeft(y)
+                 .ticks(parseInt(Math.max(innerHeight/50, 2)))
+              );
 
     xAxis.attr("transform", "translate(0," + innerHeight + ")");
 
-    // update bars
-    bars.attr("x", function (d) { return x(d.x_data); })
-        .attr("width", x.bandwidth())
-        .attr("y", function (d) { return y(d.y_data); })
-        .attr("height", function (d) { return innerHeight - y(d.y_data); });
+    // update lines
+    lines.attr("d", d3.line()
+                .x(function (d) { return x(d.x_data); })
+                .y(function (d) { return y(d.y_data); })
+              );
+    
+    // update grid lines
+    y_grid_lines.call(d3.axisLeft(y)
+                        .ticks(parseInt(Math.max(innerHeight/50, 2)))
+                        .tickSize(-innerWidth)
+                        .tickFormat("")
+                     );
+
+    x_grid_lines.attr("transform", "translate(0," + innerHeight + ")")
+                .call(d3.axisBottom(x)
+                        .ticks(parseInt(Math.max(innerWidth/50, 2)))
+                        .tickSize(-innerHeight)
+                        .tickFormat("")
+                     );
 }
 
 // initialize the chart
