@@ -25,22 +25,17 @@ A live demo of Dashing Data app can be found [here]() on Heroku.
 
 <h2 id="technologies">Technologies/Libraries</h2>
 
-1. [MongoDB](https://www.mongodb.com/) was used as the NoSQL database for the app.
-2. [Python](https://www.python.org/) was used as the back-end language.
-3. [Jinja](https://jinja.palletsprojects.com/en/2.10.x/) was used as the templating language for rendering the pages.
-4. [Materialize](https://materializecss.com/) was used as the front-end framework.
-5. Microsoft PowerPoint was used to create the logo.
-6. [S3](https://www.gimp.org/) was used to reduce the file size of the background photo and thereby speed up how fast it loads.
-7. [Heroku](https://www.heroku.com/) was used to deploy the app.
-
-Fontawesome
-Django
-Postgres
-Heroku
-Bootstrap
-D3
-S3
-Gmail
+1. [Django](https://www.djangoproject.com/) is the backend framework.
+2. [Python](https://www.python.org/) is the backend language.
+3. [Jinja](https://jinja.palletsprojects.com/en/2.10.x/) is the templating language for rendering the pages.
+4. [Bootstrap](https://getbootstrap.com/) is the frontend CSS framework.
+5. [Amazon S3](https://aws.amazon.com/) is used to serve the static and media files in production.
+6. [Heroku](https://www.heroku.com/) is used to deploy the app.
+7. [Font Awesome 4](https://fontawesome.com/v4.7.0/) is used for the icons.
+8. [Google Fonts](https://fonts.google.com/) is used for the Roboto font.
+9. [D3.js](https://d3js.org/) is used for creating the charts.
+10. [Gmail](https://www.google.com/) is used for sending the password resets.
+11. [PostgreSQL](https://www.postgresql.org/) is used for the production database.
 
 <h2 id="features">Features</h2>
 
@@ -111,8 +106,8 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 <h2 id="credits">Credits</h2>
 
 ### Content
-- Method for making D3.js charts responsive taken from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
-- Method for making left margin of chart match width of x label taken from [stackoverflow](// https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020].
+- Responsive D3.js code adapted from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
+- Dynamic D3.js left margin adapted from [stackoverflow](// https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020].
 - Download svg to image functionality taken from [Nikita Rokotyan's Block](http://bl.ocks.org/Rokotyan/0556f8facbaf344507cdc45dc3622177) [accessed 27th March 2020].
 - Formatting of messages using bootstrap classes taken from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html) [accessed 21st March 2020].
 
