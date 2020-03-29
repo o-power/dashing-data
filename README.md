@@ -100,7 +100,7 @@ A live demo of the Dashing Data site can be found [here]() on Heroku.
 | user_id | Foreign Key to User. Links the subscription back to the user. |
 | subscription_type_id | Foreign Key to SubscriptionType. Links the subscription back to the subscription type. |
 | start_date | Start date of user's subscription. |
-| end_date | End date of user's subscription.. |
+| end_date | End date of user's subscription. |
 | status | Status of subscription e.g. Active, Expired. |
 
 ### Model-View-Template
@@ -151,10 +151,10 @@ A live demo of the Dashing Data site can be found [here]() on Heroku.
 ### Existing
 
 - The user can login using their username or email. The custom authentication backend is case insensitive and ensures that one user's username cannot match another user's email or vice versa.
-- The password reset email comes from the Gmail account noreplydashingdata@gmail.com. The template for the email is in the folder templates/registration (password_reset_email.html, password_reset_subject.txt). The passowrd email is only sent if the email exists for a registered user. When the app is run locally, the email is printed to the console if the env.py file is found.
+- The password reset email comes from the Gmail account noreplydashingdata@gmail.com. The template for the email is in the folder templates/registration (password_reset_email.html, password_reset_subject.txt). The password reset is only sent if the email entered matches that of a registered user. When the app is run locally, the email is printed to the console if the env.py file is found.
 - When the user first registers they are directed to the choose subscription plan page. Payment is made via Stripe.
 - The user can view their account details, including subscription end date on their profile page.
-- If the user has no subscription or their subscription is expired, then a button appears on the profile page to direct them to the choose subscription plan page.
+- If the user has no subscription or their subscription has expired, then a button appears on the profile page to direct them to the choose subscription plan page.
 - The user can search all their saved charts.
 - The user can delete a chart.
 - The user can reload a saved chart.
@@ -230,15 +230,18 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 <h2 id="credits">Credits</h2>
 
 ### Content
-- Responsive D3.js code adapted from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
-- Dynamic D3.js left margin adapted from [stackoverflow](// https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020].
+
+- The D3.js code for resizing a chart when the window resizes is adapted from [D3.js Graph Gallery](https://www.d3-graph-gallery.com/graph/custom_responsive.html) [accessed 23rd March 2020].
+- Dynamic D3.js left margin adapted from [stackoverflow](https://stackoverflow.com/questions/17109549/set-y-axis-of-d3-chart-to-fit-widest-label) [accessed 27th March 2020].
 - Download svg to image functionality taken from [Nikita Rokotyan's Block](http://bl.ocks.org/Rokotyan/0556f8facbaf344507cdc45dc3622177) [accessed 27th March 2020].
 - Code for D3.js gridlines adapted from [Sam Hooker's Block](http://bl.ocks.org/35degrees/23873a64ceec2390c400694b6a8b57d9) [accessed 28th March 2020].
 - Formatting of messages using bootstrap classes taken from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html) [accessed 21st March 2020].
 - The Stripe code for accepting a payment was adapted from [Charges API](https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token) [accessed 29th March 2020].
 
 ### Media
+
 - The site logo was created using Microsoft PowerPoint.
 
 ### Acknowledgements
+
 - The shortcut icon was generated using [Favicon Generator](https://realfavicongenerator.net/) [accessed 21st March 2020].
