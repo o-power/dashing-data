@@ -219,8 +219,22 @@ The site was deployed to [here](https://dashing-data.herokuapp.com/) on Heroku f
 The requirements.txt file lists all the required packages that Heroku will install. The Procfile tells Heroku to use Gunicorn to run the site.
 
 Once the site is deployed from the GitHub repository:
-- Apply the migrations to the Postgres database: ```python manage.py migrate```
-- Create an admin user: ```python manage.py createsuperuser```
+- Log into Heroku from the command line (requires the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) to be installed locally):
+```
+heroku login
+```
+- Collect the static files into the STATIC_URL location (i.e. the S3 bucket):
+```
+heroku run python manage.py collectstatic --app <insert your Heroku app name>
+```
+- Apply the migrations to the Postgres database:
+```
+heroku run python manage.py migrate --app  <insert your Heroku app name>
+```
+- Create an admin user:
+```
+heroku run python manage.py createsuperuser --app  <insert your Heroku app name>
+```
 - Populate the Subscription Type table from the admin panel:
 
 | Name | Description | Length months | Price |
@@ -232,23 +246,46 @@ Once the site is deployed from the GitHub repository:
 
 ### Local Development Environment
 
-Clone
-Create a virtual environment and activate it
+Clone the GitHub repository:
 ```
-python -m venv env
-source env/Scripts/activate
+git clone https://github.com/o-power/dashing-data.git
 ```
-Install packages from requirements.txt
+Move into the cloned directory:
+```
+cd dashing-data
+```
+Create a virtual environment and activate it:
+```
+python -m venv my_env
+source my_env/Scripts/activate
+```
+Install the required packages from requirements.txt:
 ```
 pip install -r requirements.txt
 ```
-Create an env.py file (need a stripe account and test api keys)
-Makemigrations
-Migrate
+Create a file env.py and add all the environment variables listed above:
+```
+import os
 
-The Subscription Type values must be entered using the admin panel.
+os.environ.setdefault('USE_POSTGRES','FALSE')
+os.environ.setdefault('USE_S3','FALSE')
+# and so on for all the environment variables.
+```
+Set USE_POSTGRES and USE_S3 to 'FALSE' as for local development you want to use Django's SQLite database and Django's development static files server. Set the Heroku and Amazon S3 environment variables (DATABASE_URL, HOSTNAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY) to empty strings. You will need a Stripe account to get the two Stripe API keys. The DISABLE_COLLECTSTATIC environment variable is not required for local development.
 
-USE_S3 = 'TRUE' then run `python manage.py collectstatic` to collect the static files into the STATIC_URL location (i.e. the S3 bucket).
+Next, apply the migrations to the SQLite database:
+```
+python manage.py migrate
+```
+Create an admin user:
+```
+python manage.py createsuperuser
+```
+Run the server:
+```
+python manage.py runserver
+```
+As for the Heroku deployment, populate the Subscription Type table from the admin panel.
 
 <h2 id="credits">Credits</h2>
 
