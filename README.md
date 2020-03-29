@@ -11,13 +11,13 @@
 
 <h2 id="introduction">Introduction</h2>
 
-Dashing Data is a website which allows users to create charts from their own data. Users can create bar charts for free but a subscription must be paid in order to save bar charts or to access other chart types (e.g. line chart).
+Dashing Data is a website which allows users to create charts from their own data. Users can create bar charts for free but a subscription must be paid in order to create other chart types (e.g. line chart) or to save charts.
 
-Once a user is registered, they are presented with a page to choose their subscription length and then make a payment using Stripe. When a subscription expires, the user will lose their access.
+Once a user is registered, they are presented with a page to choose their subscription length and then make a payment using Stripe. When a subscription expires, the user will lose their premium access.
 
 <h2 id="demo">Demo</h2>
 
-A live demo of Dashing Data app can be found [here]() on Heroku.
+A live demo of Dashing Data site can be found [here]() on Heroku.
 
 <h2 id="ux">UX</h2>
 
@@ -25,7 +25,7 @@ A live demo of Dashing Data app can be found [here]() on Heroku.
 
 - As a **user**, I want to be able to select a chart type.
 - As a **user**, I want to be able to upload my own data for the chart.
-- As a **user**, I want to be to view the chart.
+- As a **user**, I want to be able to view the chart.
 - As a **user**, I want to be able to save my chart.
 - As a **user**, I want to be able to view a list of my saved charts.
 - As a **user**, I want to be able to search my saved charts.
@@ -36,7 +36,7 @@ A live demo of Dashing Data app can be found [here]() on Heroku.
 - As a **user**, I want to be able to register.
 - As a **user**, I want to be able to log in using my email or username.
 - As a **user**, I want to be able to log out.
-- As a **user**, I want to be able to reset my password.
+- As a **user**, I want to be able to reset my password by email.
 - As a **user**, I want the site and charts to be responsive so that I can use the site on any device.
 - As a **site owner**, I want to restrict users access if they don't have an active subscription.
 - As a **site owner**, I want to be able to use the admin panel to manage content on the site.
@@ -46,7 +46,7 @@ A live demo of Dashing Data app can be found [here]() on Heroku.
 ### Models
 
 | Model | Description |
-| --- | --- |
+| :--- | :--- |
 | User | Django user model. Each row represents a registered user. |
 | UserChart | Each row represents a chart that the user has saved. |
 | BarChart | Each row represents a row of data for a bar chart that the user has saved. |
@@ -56,13 +56,13 @@ A live demo of Dashing Data app can be found [here]() on Heroku.
 
 User Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | username | Username. Must be unique. |
 | email | User's email. Must be unique. |
 
 UserChart Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | user_id | Foreign key to User. Links the chart back to the user. |
 | chart_type | Chart type e.g. bar, line. |
 | title | Chart title. |
@@ -71,14 +71,14 @@ UserChart Model
 
 BarChart Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | chart_id | Foreign key to UserChart. Links the data point back to the chart. |
 | x_data | x data point. |
 | y_data | y data point. Must be numeric. |
 
 LineChart Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | chart_id | Foreign key to UserChart. Links the data point back to the chart. |
 | date_format | Date format e.g. %m-%d-%Y. |
 | x_data | x data point. |
@@ -86,7 +86,7 @@ LineChart Model
 
 SubscriptionType Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | name | Subscription plan name. |
 | description | Subscription plan description. |
 | length_months | Length of subscription in months. |
@@ -94,7 +94,7 @@ SubscriptionType Model
 
 UserSubscription Model
 | Field | Description |
-| --- | --- |
+| :--- | :--- |
 | user_id | Foreign Key to User. Links the subscription back to the user. |
 | subscription_type_id | Foreign Key to SubscriptionType. Links the subscription back to the subscription type. |
 | start_date | Start date of user's subscription. |
