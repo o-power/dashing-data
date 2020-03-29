@@ -232,9 +232,17 @@ USE_S3 = 'TRUE' then run `python manage.py collectstatic` to collect the static 
 The site was deployed to Heroku from the GitHub repository. The Heroku Postgres - Hobby Dev add-on must be added under Overview. The environment variables listed above must be present in the config variables under Settings. The requirements.txt file lists all the required packages that Heroku will install.
 
 Once deployed from the GitHub repository:
-Migrations
-Create superuser
-The Subscription Type values must be entered using the admin panel.
+- Migrate to the Postgres database:
+```python manage.py migrate```
+- Create an admin user:
+```python manage.py createsuperuser```
+- Populate the Subscription Type table from the admin panel:
+| Name | Description | Length months | Price |
+| :--- | :--- | :--- | :--- |
+| 1-Month Plan | Full access for 1 month. No automatic renewal. | 1 | 9.99 |
+| 3-Month Plan | Full access for 3 months for the price of 2 and a half months. No automatic renewal. | 3 | 24.99 |
+| 12-Month Plan | Full access for 12 months for the price of 9 months. No automatic renewal. | 12 | 89.91 |
+| 6-Month Plan | Full access for 6 months for the price of 5 months. No automatic renewal. | 6 | 49.95 |
 
 <h2 id="credits">Credits</h2>
 
