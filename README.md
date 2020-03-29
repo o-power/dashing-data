@@ -13,7 +13,7 @@
 
 Dashing Data is a website which allows users to create charts from their own data. Users can create bar charts for free but a subscription must be paid in order to create other chart types (e.g. line chart) or to save charts.
 
-Once a user is registered, they are presented with a page to choose their subscription length and then make a payment using Stripe. When a subscription expires, the user will lose their premium access.
+Once a user is registered, they are presented with a page to choose their subscription length and then make a payment using Stripe. When a subscription expires, the user will lose their paid access.
 
 <h2 id="demo">Demo</h2>
 
@@ -24,12 +24,14 @@ A live demo of Dashing Data site can be found [here]() on Heroku.
 ### User Stories
 
 - As a **user**, I want to be able to select a chart type.
-- As a **user**, I want to be able to upload my own data for the chart.
-- As a **user**, I want to be able to view the chart.
-- As a **user**, I want to be able to save my chart.
+- As a **user**, I want to be able to upload data for the chart.
+- As a **user**, I want to be able to create the chart.
+- As a **user**, I want to be able to download an image of the chart.
+- As a **user**, I want to be able to save the chart.
 - As a **user**, I want to be able to view a list of my saved charts.
 - As a **user**, I want to be able to search my saved charts.
 - As a **user**, I want to be able to delete a saved chart.
+- As a **user**, I want to be able to view a saved chart.
 - As a **user**, I want to be able to choose a subscription length.
 - As a **user**, I want to be able to pay the subscription fee.
 - As a **user**, I want to be able to view my profile.
@@ -101,7 +103,7 @@ UserSubscription Model
 | end_date | End date of user's subscription.. |
 | status | Status of subscription e.g. Active, Expired. |
 
-### Navigation
+### Model-View-Template
 
 | App | URL | View | Methods | Template |
 | :--- | :--- | :-- | :-- | :-- |
@@ -142,15 +144,51 @@ UserSubscription Model
 9. [D3.js](https://d3js.org/) is used for creating the charts.
 10. [Gmail](https://www.google.com/) is used for sending the password resets.
 11. [PostgreSQL](https://www.postgresql.org/) is used for the production database.
+12. [django-crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/) is used to style the Django forms.
 
 <h2 id="features">Features</h2>
 
 ### Existing
 
-### Future
-- Apply debouncing to the responsive D3.js charts to stop them constantly resizing as the window size is reduced. A full description can be found [here](https://ablesense.com/blogs/news/responsive-d3js-charts) [accessed 23rd March 2020].
+- The user can login using their username or email. The custom authentication backend is case insensitive and ensures that one user's username cannot match another user's email or vice versa.
+- The password reset email comes from the Gmail account noreplydashingdata@gmail.com. The template for the email is in the folder templates/registration (password_reset_email.html, password_reset_subject.txt). The passowrd email is only sent if the email exists for a registered user. When the app is run locally, the email is printed to the console if the env.py file is found.
+- When the user first registers they are directed to the choose subscription plan page. Payment is made via Stripe.
+- The user can view their account details, including subscription end date on their profile page.
+- If the user has no subscription or their subscription is expired, then a button appears on the profile page to direct them to the choose subscription plan page.
+- The user can search all their saved charts.
+- The user can delete a chart.
+- The user can reload a saved chart.
+- The user can upload their own data.
+- Form validation ensures the number of y data points must match the number of x data points.
+- Form validation prevents non-numeric data being entered for the y data.
+- For line charts, form validation prevents non-date data being entered for the x data.
+- For line charts, the user can select the format of the dates being entered for the x data.
+- The charts are responsive. When the window is resized, the charts are redrawn using the new dimensions. The margins, number of tick marks and gridlines are also responsive.
+- The user can download a PNG image of their chart.
+- If the user has no subscription or an expired subscription, then they will be redirected to the choose subscription plan page when they try to save the chart.
+- If the user has no subscription or an expired subscription, then they will be redirected to the choose subscription plan page when they try to create a paid chart (e.g. line chart).
+- If the user has an active subscription and they try to pay for another subscription, the payment will be prevented and the user will be redirected away.
+- The Django messages framework is used to communicate information, warnings and errors to the user.
+- The static files are served using Amazon S3.
 
-## Local development environment
+### Future
+
+- Allow the user to upload data as a CSV file.
+- Allow the user to edit saved charts.
+- Improve the PNG download by including the title and subtitle in the image.
+- Apply debouncing to the responsive D3.js charts to stop them constantly resizing as the window size is reduced. A full description can be found [here](https://ablesense.com/blogs/news/responsive-d3js-charts) [accessed 23rd March 2020].
+- Include more chart types (e.g. area chart).
+- Include more chart options (e.g. show/hide gridlines, pick colours, show/hide labels, order by, add x and y labels).
+- Add pagination to the list of saved charts.
+
+<h2 id="testing">Testing</h2>
+
+Testing cards: https://stripe.com/docs/testing#international-cards
+
+<h2 id="deployment">Deployment</h2>
+
+## Local Development Environment
+
 Clone
 Create a virtual environment and activate it
 ```
@@ -176,32 +214,9 @@ AWS_SECRET_ACCESS_KEY
 DATABASE_URL
 HOSTNAME
 
+The Subscription Type values must be entered using the admin panel.
 
-## Password reset
-
-The password reset email comes from the Gmail account noreplydashingdata@gmail.com. When the app is ran locally, the email is printed to the console if the env.py file is found.
-
-The template for the email is in the folder templates/registration.
-password_reset_email.html
-password_reset_subject.txt
-
-The passowrd email is only sent if the email exists for a registered user.
-
-## Subscriptions
-
-The subscription types are added/edited in the admin panel.
-
-Testing cards: https://stripe.com/docs/testing#international-cards
-Stripe Charge instructions: https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token
-
-Screenshot of Stripe dashboard.
-
-## Adding a new chart type
-
-<h2 id="testing">Testing</h2>
-
-<h2 id="deployment">Deployment</h2>
-
+## Heroku Production Environment
 Heroku
 Disable the collectstatic build step which Heroku runs on your behalf:
 DISABLE_COLLECTSTATIC = 1
@@ -217,6 +232,7 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 - Download svg to image functionality taken from [Nikita Rokotyan's Block](http://bl.ocks.org/Rokotyan/0556f8facbaf344507cdc45dc3622177) [accessed 27th March 2020].
 - Code for D3.js gridlines adapted from [Sam Hooker's Block](http://bl.ocks.org/35degrees/23873a64ceec2390c400694b6a8b57d9) [accessed 28th March 2020].
 - Formatting of messages using bootstrap classes taken from [simpleisbetterthancomplex.com](https://simpleisbetterthancomplex.com/tips/2016/09/06/django-tip-14-messages-framework.html) [accessed 21st March 2020].
+- The Stripe code for accepting a payment was adapted from [Charges API](https://stripe.com/docs/payments/accept-a-payment-charges#web-create-token) [accessed 29th March 2020].
 
 ### Media
 - The site logo was created using Microsoft PowerPoint.
