@@ -109,12 +109,17 @@ UserSubscription Model
 | accounts | profile/ | profile | GET | profile.html |
 | accounts | logout/ | logout | GET |  |
 | accounts | login/ | login | GET, POST | login.html |
-| subscription | / | choose_subscription | GET | subscriptions.html | 
-| subscription | `<int:pk>`/payment/ | pay_subscription | GET, POST | payment.html | 
 | accounts | password-reset/ | PasswordResetView | GET, POST | password_reset_form.html |
 | accounts | password-reset/done/ | PasswordResetDoneView | GET | password_reset_done.html |
 | accounts | password-reset/`<uidb64>`/`<token>`/ | PasswordResetConfirmView | GET, POST | password_reset_confirm.html |
 | accounts | password-reset/complete/ | PasswordResetCompleteView | GET | password_reset_complete.html |
+| subscription | / | choose_subscription | GET | subscriptions.html | 
+| subscription | `<int:pk>`/payment/ | pay_subscription | GET, POST | payment.html |
+| search | charts/ | all_charts | GET | .html |
+| search | result/ | do_search | GET | .html |
+| search | save/ | save_chart | GET, POST | .html |
+| search | `<int:pk>`/delete/ | delete_chart | GET, POST | .html |
+| search | `<int:pk>`/view/ | load_chart | GET | .html |
 
 <h2 id="technologies">Technologies/Libraries</h2>
 
