@@ -107,19 +107,27 @@ UserSubscription Model
 | :--- | :--- | :-- | :-- | :-- |
 | accounts | register/ | register | GET, POST | register.html |
 | accounts | profile/ | profile | GET | profile.html |
-| accounts | logout/ | logout | GET |  |
+| accounts | logout/ | logout | GET | redirect |
 | accounts | login/ | login | GET, POST | login.html |
 | accounts | password-reset/ | PasswordResetView | GET, POST | password_reset_form.html |
 | accounts | password-reset/done/ | PasswordResetDoneView | GET | password_reset_done.html |
 | accounts | password-reset/`<uidb64>`/`<token>`/ | PasswordResetConfirmView | GET, POST | password_reset_confirm.html |
 | accounts | password-reset/complete/ | PasswordResetCompleteView | GET | password_reset_complete.html |
+| home | / | index | GET | index.html |
+| home | charts/ | create_chart | GET | createchart.html |
 | subscription | / | choose_subscription | GET | subscriptions.html | 
 | subscription | `<int:pk>`/payment/ | pay_subscription | GET, POST | payment.html |
-| search | charts/ | all_charts | GET | .html |
-| search | result/ | do_search | GET | .html |
-| search | save/ | save_chart | GET, POST | .html |
-| search | `<int:pk>`/delete/ | delete_chart | GET, POST | .html |
-| search | `<int:pk>`/view/ | load_chart | GET | .html |
+| search | charts/ | all_charts | GET | savedcharts.html |
+| search | result/ | do_search | GET | redirect |
+| search | save/ | save_chart | GET, POST | redirect |
+| search | `<int:pk>`/delete/ | delete_chart | GET, POST | confirmdelete.html |
+| search | `<int:pk>`/view/ | load_chart | GET | redirect |
+| barchart | upload/ | upload_chart | GET, POST | upload.html |
+| barchart | chart/ | create_chart | GET | chart.html |
+| barchart | `<int:pk>`/view/ | view_chart | GET | viewchart.html |
+| linechart | upload/ | upload_chart | GET, POST | upload.html |
+| linechart | chart/ | create_chart | GET | chart.html |
+| linechart | `<int:pk>`/view/ | view_chart | GET | viewchart.html |
 
 <h2 id="technologies">Technologies/Libraries</h2>
 
