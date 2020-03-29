@@ -106,12 +106,15 @@ UserSubscription Model
 | App | URL | View | Methods | Template |
 | :--- | :--- | :-- | :-- | :-- |
 | accounts | register/ | register | GET, POST | register.html |
-| accounts | profile/ | profile | GET | profile.html. |
+| accounts | profile/ | profile | GET | profile.html |
 | accounts | logout/ | logout | GET |  |
-| accounts | login/ | login | GET, POST | login.html. |
+| accounts | login/ | login | GET, POST | login.html |
 | subscription | / | choose_subscription | GET | subscriptions.html | 
-| subscription | <int:pk>/payment/ | pay_subscription | GET, POST | payment.html | 
-
+| subscription | `<int:pk>`/payment/ | pay_subscription | GET, POST | payment.html | 
+| accounts | password-reset/ | PasswordResetView | GET, POST | password_reset_form.html |
+| accounts | password-reset/done/ | PasswordResetDoneView | GET | password_reset_done.html |
+| accounts | password-reset/`<uidb64>`/`<token>`/ | PasswordResetConfirmView | GET, POST | password_reset_confirm.html |
+| accounts | password-reset/complete/ | PasswordResetCompleteView | GET | password_reset_complete.html |
 
 <h2 id="technologies">Technologies/Libraries</h2>
 
