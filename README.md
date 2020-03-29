@@ -213,9 +213,13 @@ The following environment variables must be set.
 
 ### Heroku Production Environment
 
-The site was deployed to [here](https://dashing-data.herokuapp.com/) on Heroku from the GitHub repository. In the Heroku dashboard of the site:
+The site was deployed to [here](https://dashing-data.herokuapp.com/) on Heroku from the GitHub repository.
+
+To deploy the site, an app was first created in Heroku. Then in the Heroku dashboard of the app:
 - The Heroku Postgres Hobby Dev add-on must be added under Overview.
-- The environment variables listed above must be present in the config variables under Settings.
+- The app must be connected to the GitHub repository under Deploy.
+- The environment variables listed above must be present in the config variables under Settings. USE_POSTGRES and USE_S3 should be set to 'TRUE'.
+
 The requirements.txt file lists all the required packages that Heroku will install. The Procfile tells Heroku to use Gunicorn to run the site.
 
 Once the site is deployed from the GitHub repository:
@@ -244,6 +248,8 @@ heroku run python manage.py createsuperuser --app  <insert your Heroku app name>
 | 6-Month Plan | Full access for 6 months for the price of 5 months. No automatic renewal. | 6 | 49.95 |
 | 12-Month Plan | Full access for 12 months for the price of 9 months. No automatic renewal. | 12 | 89.91 |
 
+The site should now be deployed
+
 ### Local Development Environment
 
 Clone the GitHub repository:
@@ -263,7 +269,7 @@ Install the required packages from requirements.txt:
 ```
 pip install -r requirements.txt
 ```
-Create a file env.py and add all the environment variables listed above:
+Create a file called env.py and add all the environment variables listed above:
 ```
 import os
 
