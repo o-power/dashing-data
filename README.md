@@ -229,14 +229,16 @@ USE_S3 = 'TRUE' then run `python manage.py collectstatic` to collect the static 
 
 ### Heroku Production Environment
 
-The site was deployed to Heroku from the GitHub repository. The Heroku Postgres - Hobby Dev add-on must be added under Overview. The environment variables listed above must be present in the config variables under Settings. The requirements.txt file lists all the required packages that Heroku will install.
+The site was deployed to Heroku from the GitHub repository. In the Heroku dashboard of the site:
+- The Heroku Postgres Hobby Dev add-on must be added under Overview.
+- The environment variables listed above must be present in the config variables under Settings.
+The requirements.txt file lists all the required packages that Heroku will install. The Procfile tells Heroku to use Gunicorn to run the site.
 
-Once deployed from the GitHub repository:
-- Migrate to the Postgres database:
-```python manage.py migrate```
-- Create an admin user:
-```python manage.py createsuperuser```
+Once the site is deployed from the GitHub repository:
+- Apply the migrations to the Postgres database: ```python manage.py migrate```
+- Create an admin user: ```python manage.py createsuperuser```
 - Populate the Subscription Type table from the admin panel:
+
 | Name | Description | Length months | Price |
 | :--- | :--- | :--- | :--- |
 | 1-Month Plan | Full access for 1 month. No automatic renewal. | 1 | 9.99 |
