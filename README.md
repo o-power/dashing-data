@@ -17,7 +17,7 @@ Once a user is registered, they are presented with a page to choose their subscr
 
 <h2 id="demo">Demo</h2>
 
-A live demo of the Dashing Data site can be found [here]() on Heroku.
+A live demo of the Dashing Data site can be found [here](https://dashing-data.herokuapp.com/) on Heroku.
 
 <h2 id="ux">UX</h2>
 
@@ -185,7 +185,11 @@ A live demo of the Dashing Data site can be found [here]() on Heroku.
 
 <h2 id="testing">Testing</h2>
 
-Testing cards: https://stripe.com/docs/testing#international-cards
+Created users with these details:
+
+The following cards from Stripe's [testing](https://stripe.com/docs/testing#international-cards) cards were used:
+
+The Stripe x panel was used to verify the payments were made.
 
 <h2 id="deployment">Deployment</h2>
 
@@ -207,6 +211,25 @@ The following environment variables must be set.
 | HOSTNAME | The name of the deployed app, e.g. dashing-data.herokuapp.com. |
 | DISABLE_COLLECTSTATIC | Set to 1 to stop Heroku running collectstatic during the deployment as the static files will be served from Amazon S3. This environment variable is not needed for local development. |
 
+### Heroku Production Environment
+
+The site was deployed to [here](https://dashing-data.herokuapp.com/) on Heroku from the GitHub repository. In the Heroku dashboard of the site:
+- The Heroku Postgres Hobby Dev add-on must be added under Overview.
+- The environment variables listed above must be present in the config variables under Settings.
+The requirements.txt file lists all the required packages that Heroku will install. The Procfile tells Heroku to use Gunicorn to run the site.
+
+Once the site is deployed from the GitHub repository:
+- Apply the migrations to the Postgres database: ```python manage.py migrate```
+- Create an admin user: ```python manage.py createsuperuser```
+- Populate the Subscription Type table from the admin panel:
+
+| Name | Description | Length months | Price |
+| :--- | :--- | :--- | :--- |
+| 1-Month Plan | Full access for 1 month. No automatic renewal. | 1 | 9.99 |
+| 3-Month Plan | Full access for 3 months for the price of 2 and a half months. No automatic renewal. | 3 | 24.99 |
+| 6-Month Plan | Full access for 6 months for the price of 5 months. No automatic renewal. | 6 | 49.95 |
+| 12-Month Plan | Full access for 12 months for the price of 9 months. No automatic renewal. | 12 | 89.91 |
+
 ### Local Development Environment
 
 Clone
@@ -226,25 +249,6 @@ Migrate
 The Subscription Type values must be entered using the admin panel.
 
 USE_S3 = 'TRUE' then run `python manage.py collectstatic` to collect the static files into the STATIC_URL location (i.e. the S3 bucket).
-
-### Heroku Production Environment
-
-The site was deployed to Heroku from the GitHub repository. In the Heroku dashboard of the site:
-- The Heroku Postgres Hobby Dev add-on must be added under Overview.
-- The environment variables listed above must be present in the config variables under Settings.
-The requirements.txt file lists all the required packages that Heroku will install. The Procfile tells Heroku to use Gunicorn to run the site.
-
-Once the site is deployed from the GitHub repository:
-- Apply the migrations to the Postgres database: ```python manage.py migrate```
-- Create an admin user: ```python manage.py createsuperuser```
-- Populate the Subscription Type table from the admin panel:
-
-| Name | Description | Length months | Price |
-| :--- | :--- | :--- | :--- |
-| 1-Month Plan | Full access for 1 month. No automatic renewal. | 1 | 9.99 |
-| 3-Month Plan | Full access for 3 months for the price of 2 and a half months. No automatic renewal. | 3 | 24.99 |
-| 12-Month Plan | Full access for 12 months for the price of 9 months. No automatic renewal. | 12 | 89.91 |
-| 6-Month Plan | Full access for 6 months for the price of 5 months. No automatic renewal. | 6 | 49.95 |
 
 <h2 id="credits">Credits</h2>
 
