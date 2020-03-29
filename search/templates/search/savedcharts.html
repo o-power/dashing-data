@@ -41,7 +41,7 @@
                 <td>{{ chart.title }}</td>
                 <td>{{ chart.date_created }}</td>
                 <td class="text-left">
-                    <a href="{% url 'search:view_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
+                    <a href="{% url 'search:load_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-eye fa-fw" aria-hidden="true"></i></a>
                     <a href="{% url 'search:delete_chart' chart.id %}" class="custom-btn custom-btn-sm"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></a>
                 </td>
             </tr>

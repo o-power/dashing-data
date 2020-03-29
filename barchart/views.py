@@ -40,3 +40,9 @@ def create_chart(request):
     Render page with bar chart.
     """
     return render(request, 'barchart/chart.html')
+
+def view_chart(request, pk=None):
+    """
+    Render page with saved bar chart.
+    """
+    return render(request, 'barchart/viewchart.html', {'pk': pk})

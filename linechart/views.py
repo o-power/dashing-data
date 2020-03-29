@@ -64,3 +64,9 @@ def create_chart(request):
     Render page with line chart.
     """
     return render(request, 'linechart/chart.html')
+
+def view_chart(request, pk=None):
+    """
+    Render page with saved line chart.
+    """
+    return render(request, 'linechart/viewchart.html', {'pk': pk})

@@ -111,8 +111,8 @@ def load_chart(request, pk=None):
             request.session['chart_title'] = chart.title
             request.session['chart_subtitle'] = chart.subtitle
             request.session['chart_data'] = bar_data
-            # needs to be a page with edit button which goes to an upload page with save button
-            return redirect(reverse('barchart:create_chart'))
+
+            return redirect(reverse('barchart:view_chart', kwargs={'pk': pk}))
     elif chart.chart_type == 'line':
         line_chart = LineChart.objects.filter(chart_id=pk) if pk else None
         if line_chart:
@@ -125,9 +125,8 @@ def load_chart(request, pk=None):
             request.session['chart_subtitle'] = chart.subtitle
             request.session['date_format'] = line_chart[0].date_format
             request.session['chart_data'] = line_data
-            # needs to be a page with edit button which goes to an upload page with save button
-            return redirect(reverse('linechart:create_chart'))
+
+            return redirect(reverse('linechart:view_chart', kwargs={'pk': pk}))
 
     messages.error(request, 'Unable to load chart.')
     return redirect(reverse('search:all_charts'))
-    

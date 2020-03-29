@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block page_title %}Bar Chart{% endblock page_title %}
+
+{% block head_js %}
+{% load static %}
+<script type="text/javascript" src="{% static 'js/d3.v5.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/canvas-toBlob.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/FileSaver.min.js' %}"></script>
+{% endblock head_js %}
+
+{% block content %}
+<div class="row mt-4">
+  <div class="col text-center">
+      <h1>Bar Chart</h1>
+  </div>
+</div>
+
+<div class="row mt-4 justify-content-center">
+  <div id="chart-container" class="col-12 col-lg-8">
+    <div id="chart-title">{{ chart_title }}</div>
+    <div id="chart-subtitle">{{ chart_subtitle }}</div>
+    <div id="draw-here"></div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12 text-center">
+    <button id="downloadImageButton" class="custom-btn">Download Image</button>
+  </div>
+</div>
+
+<div class="table-responsive mt-4">
+  <table class="table chart-data-table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">X Data</th>
+            <th scope="col">Y Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in chart_data %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ row.x_data }}</td>
+            <td>{{ row.y_data }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{{ chart_data|json_script:"bar_data" }}
+<script type="text/javascript" src="{% static 'js/barchart.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/downloadimage.js' %}"></script>
+{% endblock %}
