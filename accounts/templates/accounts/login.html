@@ -17,6 +17,7 @@
             
             <div class="row">
                 <div class="col">
+                    <p>New to Dashing Data? <a href="{% url 'accounts:register' %}?next={{ next }}">Register here</a></p>
                     {{ login_form | crispy }}
                     <p><a href="{% url 'accounts:password_reset' %}">Forgot password?</a></p>
                 </div>
@@ -28,12 +29,6 @@
                 </div>
             </div>
         </form>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col">
-        <p>New to Dashing Data? <a href="{% url 'accounts:register' %}?next={{ next }}">Register here</a></p>
     </div>
 </div>
 {% endblock %}

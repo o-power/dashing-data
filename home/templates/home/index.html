@@ -3,5 +3,75 @@
 {% block page_title %}Dashing Data{% endblock page_title %}
 
 {% block content %}
-    <p>Index</p>
+<!-- Jumbotron -->
+<section id="jumbotron-section" class="jumbotron jumbotron-fluid">
+    <div class="container text-center">
+        <h1>Welcome to Dashing Data.</h1>
+        <p class="lead">Start creating visually engaging charts online.</p>
+        <a class="custom-btn" href="{% url 'home:create_chart' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i>
+            Create Chart</a>
+    </div>
+</section>
+<!-- Charts -->
+<section id="charts-section">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h2>Pick from our library of chart types.</h2>
+        </div>
+    </div>
+    <div class="row mt-4">
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h3 class="card-title">Bar Chart <span class="badge badge-success">Free</span></h3>
+                    <p class="card-text">Compare values across discrete categories.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'barchart:upload_chart' %}" class="custom-btn">Select</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h3 class="card-title">Line Chart <span class="badge badge-warning">Paid</span></h3>
+                    <p class="card-text">Show trends over time.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'linechart:upload_chart' %}" class="custom-btn">Select</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Subscription Plans -->
+<section id="subscription-section">
+    <div class="row mt-4">
+        <div class="col text-center">
+            <h2>Subscribe to get full access to the growing library of chart types.</h2>
+        </div>
+    </div>
+    <div class="row mt-4">
+        {% for subscription_type in subscription_types %}
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4">
+            <div class="card h-100 text-center">
+                <div class="card-body">
+                    <h3 class="card-title">{{ subscription_type.name }}</h3>
+                    <p class="card-text">
+                        <h4>&euro;{{ subscription_type.price }}</h4>
+                        {{ subscription_type.description }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'subscription:pay_subscription' subscription_type.id %}" class="custom-btn">Sign
+                        Up</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

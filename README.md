@@ -13,6 +13,8 @@
 
 Dashing Data is a website which allows users to create charts from their own data. Users can create bar charts for free but a subscription must be paid in order to create other chart types (e.g. line chart) or to save charts.
 
+The chart library can be expanded to include more visually engaging and complex charts using the D3.js JavaScript library. In particular, there are many chart types which are very difficult to create in other common charting technologies (e.g. Excel, Tableau) but which can be created using D3.js.
+
 Once a user is registered, they are presented with a page to choose their subscription length and then make a payment using Stripe. When a subscription expires, the user will lose their paid access.
 
 <h2 id="demo">Demo</h2>
@@ -311,3 +313,5 @@ As for the Heroku deployment, populate the Subscription Type table from the admi
 ### Acknowledgements
 
 - The shortcut icon was generated using [Favicon Generator](https://realfavicongenerator.net/) [accessed 21st March 2020].
+- The initial idea for the site came from [Datawrapper](https://www.datawrapper.de/) [accessed 29th March 2020].
+- The colour theme was adapted from [Our World in Data](https://ourworldindata.org/) [accessed 29th March 2020].

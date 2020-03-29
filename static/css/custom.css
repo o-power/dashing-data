@@ -138,3 +138,14 @@ body {
 .grid path {
     stroke-width: 0;
 }
+
+/* landing page formatting */
+.card-footer {
+    background-color: #f8c723;
+}
+
+.jumbotron {
+    background-color: #f8c723;
+}
+
+/*  */
