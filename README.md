@@ -229,6 +229,11 @@ USE_S3 = 'TRUE' then run `python manage.py collectstatic` to collect the static 
 
 ### Heroku Production Environment
 
+The site was deployed to Heroku from the GitHub repository. The Heroku Postgres - Hobby Dev add-on must be added under Overview. The environment variables listed above must be present in the config variables under Settings. The requirements.txt file lists all the required packages that Heroku will install.
+
+Once deployed from the GitHub repository:
+Migrations
+Create superuser
 The Subscription Type values must be entered using the admin panel.
 
 <h2 id="credits">Credits</h2>
