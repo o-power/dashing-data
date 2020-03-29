@@ -103,6 +103,16 @@ UserSubscription Model
 
 ### Navigation
 
+| App | URL | View | Methods | Template |
+| :--- | :--- | :-- | :-- | :-- |
+| accounts | register/ | register | GET, POST | register.html |
+| accounts | profile/ | profile | GET | profile.html. |
+| accounts | logout/ | logout | GET |  |
+| accounts | login/ | login | GET, POST | login.html. |
+| subscription | / | choose_subscription | GET | subscriptions.html | 
+| subscription | <int:pk>/payment/ | pay_subscription | GET, POST | payment.html | 
+
+
 <h2 id="technologies">Technologies/Libraries</h2>
 
 1. [Django](https://www.djangoproject.com/) is the backend framework.
