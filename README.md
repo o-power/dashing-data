@@ -17,7 +17,7 @@ Once a user is registered, they are presented with a page to choose their subscr
 
 <h2 id="demo">Demo</h2>
 
-A live demo of Dashing Data site can be found [here]() on Heroku.
+A live demo of the Dashing Data site can be found [here]() on Heroku.
 
 <h2 id="ux">UX</h2>
 
@@ -56,13 +56,13 @@ A live demo of Dashing Data site can be found [here]() on Heroku.
 | SubscriptionType | Contains the subscription types that the user can choose from. |
 | UserSubscription | Each row represents a user subscription. |
 
-User Model
+**User Model**
 | Field | Description |
 | :--- | :--- |
 | username | Username. Must be unique. |
 | email | User's email. Must be unique. |
 
-UserChart Model
+**UserChart Model**
 | Field | Description |
 | :--- | :--- |
 | user_id | Foreign key to User. Links the chart back to the user. |
@@ -71,14 +71,14 @@ UserChart Model
 | subtitle | Chart subtitle. |
 | date_created | Date chart was saved. |
 
-BarChart Model
+**BarChart Model**
 | Field | Description |
 | :--- | :--- |
 | chart_id | Foreign key to UserChart. Links the data point back to the chart. |
 | x_data | x data point. |
 | y_data | y data point. Must be numeric. |
 
-LineChart Model
+**LineChart Model**
 | Field | Description |
 | :--- | :--- |
 | chart_id | Foreign key to UserChart. Links the data point back to the chart. |
@@ -86,7 +86,7 @@ LineChart Model
 | x_data | x data point. |
 | y_data | y data point. Must be numeric. |
 
-SubscriptionType Model
+**SubscriptionType Model**
 | Field | Description |
 | :--- | :--- |
 | name | Subscription plan name. |
@@ -94,7 +94,7 @@ SubscriptionType Model
 | length_months | Length of subscription in months. |
 | price | Price of subscription in Euro. |
 
-UserSubscription Model
+**UserSubscription Model**
 | Field | Description |
 | :--- | :--- |
 | user_id | Foreign Key to User. Links the subscription back to the user. |
@@ -168,6 +168,8 @@ UserSubscription Model
 - If the user has no subscription or an expired subscription, then they will be redirected to the choose subscription plan page when they try to save the chart.
 - If the user has no subscription or an expired subscription, then they will be redirected to the choose subscription plan page when they try to create a paid chart (e.g. line chart).
 - If the user has an active subscription and they try to pay for another subscription, the payment will be prevented and the user will be redirected away.
+- The admin panel is customized to show the BarChart or LineChart on the same page as the parent model UserChart.
+- A custom context processor is used to handle the uploaded data without saving it in a database. The user can only save the data in the database when they have an active subscription.
 - The Django messages framework is used to communicate information, warnings and errors to the user.
 - The static files are served using Amazon S3.
 
@@ -187,7 +189,7 @@ Testing cards: https://stripe.com/docs/testing#international-cards
 
 <h2 id="deployment">Deployment</h2>
 
-## Local Development Environment
+### Local Development Environment
 
 Clone
 Create a virtual environment and activate it
@@ -216,7 +218,8 @@ HOSTNAME
 
 The Subscription Type values must be entered using the admin panel.
 
-## Heroku Production Environment
+### Heroku Production Environment
+
 Heroku
 Disable the collectstatic build step which Heroku runs on your behalf:
 DISABLE_COLLECTSTATIC = 1
