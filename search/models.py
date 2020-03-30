@@ -9,7 +9,7 @@ class UserChart(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "user_id: " + str(self.user_id) + \
+        return "user_id: " + str(self.user_id.id) + \
             " chart_id: " + str(self.pk)
 
 class BarChart(models.Model):
@@ -18,7 +18,7 @@ class BarChart(models.Model):
     y_data = models.DecimalField(max_digits=14, decimal_places=5)
 
     def __str__(self):
-        return " chart_id: " + str(self.chart_id) + \
+        return "chart_id: " + str(self.chart_id.id) + \
             " row_id: " + str(self.pk)
 
 class LineChart(models.Model):
@@ -28,5 +28,5 @@ class LineChart(models.Model):
     y_data = models.DecimalField(max_digits=14, decimal_places=5)
 
     def __str__(self):
-        return " chart_id: " + str(self.chart_id) + \
+        return "chart_id: " + str(self.chart_id.id) + \
             " row_id: " + str(self.pk)

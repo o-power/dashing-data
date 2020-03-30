@@ -45,7 +45,7 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 - As a **site owner**, I want to restrict users access if they don't have an active subscription.
 - As a **site owner**, I want to be able to use the admin panel to manage content on the site.
 - As a **site owner**, I want validation on the data upload to ensure the data has the correct data types.
-- As a **site owner**, I want continuous integration testing to ensure that code changes do not break existing features.
+- As a **site owner**, I want unit tests to ensure that code is working as expected.
 
 ### Models
 
@@ -192,6 +192,22 @@ Created users with these details:
 The following cards from Stripe's [testing](https://stripe.com/docs/testing#international-cards) cards were used:
 
 The Stripe x panel was used to verify the payments were made.
+
+### Unit Tests
+
+To run the unit tests:
+```
+python manage.py test
+```
+To generate a test coverage report for one of the apps, e.g. subscription:
+```
+coverage erase
+coverage run --source=subscription manage.py test
+coverage report
+coverage html
+```
+To see the html report, got to the htmlcov folder and open index.html.
+
 
 <h2 id="deployment">Deployment</h2>
 
