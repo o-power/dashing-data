@@ -195,19 +195,29 @@ The Stripe x panel was used to verify the payments were made.
 
 ### Unit Tests
 
+A number of unit tests were written to demonstrate how the test coverage could be improved.
+| App | Unit Tests |
+| :--- | :--- |
+| search | test_models.py |
+| search | test_views.py |
+| barchart | test_forms.py |
+| barchart | test_views.py |
+
 To run the unit tests:
 ```
 python manage.py test
 ```
-To generate a test coverage report for one of the apps, e.g. subscription:
+Alternatively, to generate a test coverage report for one of the apps, e.g. search:
 ```
 coverage erase
-coverage run --source=subscription manage.py test
+coverage run --source=search manage.py test
 coverage report
+```
+To see the html report, run:
+```
 coverage html
 ```
-To see the html report, got to the htmlcov folder and open index.html.
-
+and then go to the htmlcov/ folder and open index.html.
 
 <h2 id="deployment">Deployment</h2>
 

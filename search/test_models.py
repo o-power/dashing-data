@@ -5,7 +5,7 @@ from .models import UserChart, BarChart, LineChart
 class UserChartTestCase(TestCase):
     def setUp(self):
         """Set up objects used by all test methods."""
-        user = User.objects.create(
+        user = User.objects.create_user(
             username = "test_user1",
             email = "test_user1@test.com",
             password = "test_user1_test"
@@ -22,7 +22,8 @@ class UserChartTestCase(TestCase):
         user = User.objects.get(username="test_user1")
         user_chart = UserChart.objects.get(user_id=user.id)
         expected_object_string = "user_id: " + str(user.id) + \
-            " chart_id: " + str(user_chart.id)    
+            " chart_id: " + str(user_chart.id)
+
         self.assertEqual(str(user_chart), expected_object_string)
 
 class BarChartTestCase(TestCase):
@@ -52,6 +53,7 @@ class BarChartTestCase(TestCase):
         bar_chart = BarChart.objects.get(chart_id=user_chart.id)
         expected_object_string = "chart_id: " + str(user_chart.id) + \
             " row_id: " + str(bar_chart.id)   
+
         self.assertEqual(str(bar_chart), expected_object_string)
 
 class LineChartTestCase(TestCase):
@@ -82,4 +84,5 @@ class LineChartTestCase(TestCase):
         line_chart = LineChart.objects.get(chart_id=user_chart.id)
         expected_object_string = "chart_id: " + str(user_chart.id) + \
             " row_id: " + str(line_chart.id)   
+            
         self.assertEqual(str(line_chart), expected_object_string)
