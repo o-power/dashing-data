@@ -1,16 +1,15 @@
 from django import forms
 from datetime import datetime
-from django.utils import timezone
 
 class UploadDataForm(forms.Form):
     """
     Form for uploading data.
     """
     DATE_FORMAT_CHOICES = [
-		('%m-%d-%Y', timezone.now().strftime('%m-%d-%Y')),
-        ('%m/%d/%Y', timezone.now().strftime('%m/%d/%Y')),
-		('%d-%m-%Y', timezone.now().strftime('%d-%m-%Y')),
-		('%d/%m/%Y', timezone.now().strftime('%d/%m/%Y')),
+		('%m-%d-%Y', 'MM-DD-YYYY'),
+        ('%m/%d/%Y', 'MM/DD/YYYY'),
+		('%d-%m-%Y', 'DD-MM-YYYY'),
+		('%d/%m/%Y', 'DD/MM/YYYY'),
     ]
     
     chart_title = forms.CharField(

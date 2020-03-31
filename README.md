@@ -223,7 +223,7 @@ Chart Subtitle: Top 10 countries by population
 | 145934462 |
 | 128932753 |
 
-Click Upload. Click Save Chart without logging in. Confirm redirected to login page.
+Click Upload. Confirm a bar chart appears. Click Save Chart without logging in. Confirm redirected to login page.
 
 **Test 3:** Register a new user. Do not pick a subscription plan. Go to Account > Profile. Confirm the page has a "Choose Subscription" button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
 
@@ -320,7 +320,33 @@ Date Format: DD-MM-YYYY
 
 Click Upload. Confirm that a line chart appears. Click Save Chart. Confirm chart is added to list in Your Charts. Click on view button beside chart in list. Confirm that the line chart appears. Go to Your Charts. Click on delete button beside chart in list. Confirm delete. Confirm that the line chart is gone.
 
-**Test 12:** Create a chart. Resize the browser window. Confirm that the chart resizes and that the number of tick marks and gridlines is reduced as the window gets smaller.
+**Test 12:** Go to Create Chart > Line Chart. Enter the values below.
+
+Chart Title: Miles Ran by Day
+
+Chart Subtitle: Number of miles I ran by day
+
+Date Format: DD-MM-YYYY
+
+| X Data |
+| :--- |
+| 03-20-2020 |
+| 03-25-2020 |
+| 03-36-2020 |
+| 03-31-2020 |
+
+| Y Data |
+| :--- |
+| 9.1 |
+| 6 |
+| 4.6 |
+| 3.2 |
+
+Click Upload. Confirm that the error message "x data must be in chosen date format." appears.
+
+**Test 13:** Create a chart. Resize the browser window. Confirm that the chart resizes and that the number of tick marks and gridlines is reduced as the window gets smaller.
+
+The above tests were repeated on a laptop and a Samsung A5 phone. The tests were also repeated in Chrome, Firefox (Desktop only) and Edge (Desktop only).
 
 ### Unit Tests
 
