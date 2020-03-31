@@ -189,41 +189,53 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 
 ### Manual Tests
 
-Select Line Chart without logging in. Confirm redirected to login page.
+**Test 1:** Select Line Chart without logging in. Confirm redirected to login page.
 
-Create a bar chart and try to save it without logging in. Confirm redirected to login page.
+**Test 2:** Create a bar chart with these values:
+Chart Title: Population by Country
+Chart Subtitle: Top 10 countries by population
 
-Create a new user. Do not pick a subscription plan. Go to Account > Profile. Confirm the page has a "Choose Subscription" button.
-Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+| X Data | Y Data |
+| :--- | :--- |
+| China | 1439323776 |
+| India | 1380004385 |
+| United States | 331002651 |
+| Indonesia | 273523615 |
+| Pakistan | 220892340 |
+| Brazil | 212559417 |
+| Nigeria | 206139589 |
+| Bangladesh | 164689383 |
+| Russia | 145934462 |
+| Mexico | 128932753 |
 
-Pick a subscription plan. Pay the subscription charge using a test card e.g.
+Try to save it without logging in. Confirm redirected to login page.
+
+**Test 3:** Register a new user. Do not pick a subscription plan. Go to Account > Profile. Confirm the page has a "Choose Subscription" button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+
+**Test 4:** Pick a subscription plan. Pay the subscription charge using a [Stripe test card](https://stripe.com/docs/testing#international-cards) e.g.
+
 | Card Number | MM/YY | CVC | ZIP |
+| :--- | :--- | :--- | :--- |
 | 4242 4242 4242 4242 | 08/21 | 123 | 12345 |
-Go to the [Stripe dashboard](https://dashboard.stripe.com/login) and confirm the card was successfully charged.
-Go to Accounts > Profile and confirm the subscription details are shown.
-Confirm a line chart can be created and saved.
 
-Create a chart and click "Download Image" button. Confirm a PNG of the chart downloads.
+Go to the [Stripe dashboard](https://dashboard.stripe.com/login) and confirm the card was successfully charged. Go to Account > Profile and confirm the subscription details are shown. Confirm a line chart can now be created and saved.
 
-Create a user with an active subscription. Go to the admin panel and set the subscription status to Expired.
-Login and go to Account > Profile and confirm there is a "Renew Subscription" button.
-Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+**Test 5:** Create a chart and click "Download Image" button. Confirm a PNG of the chart downloads.
 
-Create a user with a real email address. Go to Account > Reset Password. Enter email and confirm password reset email is received from . Confirm password can be reset. 
+**Test 6:** Create a user with an active subscription. Go to the admin panel and set the subscription end date to a date in the past and the subscription status to Expired. Login and go to Account > Profile. Confirm there is a "Renew Subscription" button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
 
+**Test 7:** Create a user with a real email address. Login. Go to Account > Reset Password. Enter email and confirm password reset email is received from noreplydashingdata@gmail.com. Confirm password can be reset.
 
-Try to pay a second time
+**Test 8:** Create a user with an active subscription. Go to "/subscription/". Try to pay another subscription. Confirm redirected "Your Charts" page.
+
+**Test 9:** 
 
 form validation
 
 
 example data
 
-Created users with these details:
-
-The following cards from Stripe's [testing](https://stripe.com/docs/testing#international-cards) cards were used:
-
-The Stripe x panel was used to verify the payments were made.
+Devices
 
 ### Unit Tests
 
