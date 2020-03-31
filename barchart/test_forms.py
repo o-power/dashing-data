@@ -18,7 +18,7 @@ class UploadDataFormTestCase(TestCase):
         self.assertFalse(upload_data_form.is_valid())
         self.assertEqual(upload_data_form.errors['y_data'], ['y data must be numeric.'])
     
-    def test_form_validation_fails_if_xy_mistmatch(self):
+    def test_form_validation_fails_if_xy_mismatch(self):
         """
         Test form validation fails if the number of
         y values does not match the x values.

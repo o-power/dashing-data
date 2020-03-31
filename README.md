@@ -195,7 +195,7 @@ The Stripe x panel was used to verify the payments were made.
 
 ### Unit Tests
 
-A number of unit tests were written to demonstrate how the test coverage could be improved.
+A number of unit tests were written to automate some of the testing.
 | App | Test File | Test Case Class | Unit Test |
 | :--- | :--- | :--- | :--- |
 | search | test_models.py | UserChartTestCase | test_user_chart_as_a_string |
@@ -208,7 +208,7 @@ A number of unit tests were written to demonstrate how the test coverage could b
 | search | test_views.py | DoSearchViewTestCase | test_correct_template_is_used |
 | search | test_views.py | DoSearchViewTestCase | test_search_returns_correct_results |
 | barchart | test_forms.py | UploadDataFormTestCase | test_correct_message_for_nonnumeric_y_data |
-| barchart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_if_xy_mistmatch |
+| barchart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_if_xy_mismatch |
 | barchart | test_views.py | CreateChartViewTestCase | test_correct_template_is_used |
 | barchart | test_views.py | ViewChartViewTestCase | test_correct_template_is_used |
 
