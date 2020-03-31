@@ -195,18 +195,31 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 Chart Title: Population by Country
 Chart Subtitle: Top 10 countries by population
 
-| X Data | Y Data |
-| :--- | :--- |
-| China | 1439323776 |
-| India | 1380004385 |
-| United States | 331002651 |
-| Indonesia | 273523615 |
-| Pakistan | 220892340 |
-| Brazil | 212559417 |
-| Nigeria | 206139589 |
-| Bangladesh | 164689383 |
-| Russia | 145934462 |
-| Mexico | 128932753 |
+| X Data ||
+| :--- |
+| China |
+| India |
+| United States |
+| Indonesia |
+| Pakistan |
+| Brazil |
+| Nigeria |
+| Bangladesh |
+| Russia | 
+| Mexico |
+
+| Y Data |
+| :--- |
+| 1439323776 |
+| 1380004385 |
+| 331002651 |
+| 273523615 |
+| 220892340 |
+| 212559417 |
+| 206139589 |
+| 164689383 |
+| 145934462 |
+| 128932753 |
 
 Try to save it without logging in. Confirm redirected to login page.
 
