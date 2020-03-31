@@ -468,6 +468,7 @@ As for the Heroku deployment, populate the Subscription Type table from the admi
 ### Media
 
 - The site logo was created using Microsoft PowerPoint.
+- The background image was created using Microsoft Excel.
 
 ### Acknowledgements
 
