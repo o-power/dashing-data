@@ -195,7 +195,7 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 Chart Title: Population by Country
 Chart Subtitle: Top 10 countries by population
 
-| X Data ||
+| X Data |
 | :--- |
 | China |
 | India |
