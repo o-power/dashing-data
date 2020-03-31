@@ -196,12 +196,21 @@ The Stripe x panel was used to verify the payments were made.
 ### Unit Tests
 
 A number of unit tests were written to demonstrate how the test coverage could be improved.
-| App | Unit Tests |
-| :--- | :--- |
-| search | test_models.py |
-| search | test_views.py |
-| barchart | test_forms.py |
-| barchart | test_views.py |
+| App | Test File | Test Case Class | Unit Test |
+| :--- | :--- | :--- | :--- |
+| search | test_models.py | UserChartTestCase | test_user_chart_as_a_string |
+| search | test_models.py | BarChartTestCase | test_bar_chart_as_a_string |
+| search | test_models.py | LineChartTestCase | test_line_chart_as_a_string |
+| search | test_views.py | AllChartsViewTestCase | test_redirect_if_not_logged_in |
+| search | test_views.py | AllChartsViewTestCase | test_correct_template_is_used |
+| search | test_views.py | AllChartsViewTestCase | test_context_contains_users_charts |
+| search | test_views.py | DoSearchViewTestCase | test_redirect_if_not_logged_in |
+| search | test_views.py | DoSearchViewTestCase | test_correct_template_is_used |
+| search | test_views.py | DoSearchViewTestCase | test_search_returns_correct_results |
+| barchart | test_forms.py | UploadDataFormTestCase | test_correct_message_for_nonnumeric_y_data |
+| barchart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_if_xy_mistmatch |
+| barchart | test_views.py | CreateChartViewTestCase | test_correct_template_is_used |
+| barchart | test_views.py | ViewChartViewTestCase | test_correct_template_is_used |
 
 To run the unit tests:
 ```
