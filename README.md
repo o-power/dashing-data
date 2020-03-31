@@ -192,7 +192,9 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 **Test 1:** Go to Create Chart > Line Chart without logging in. Confirm redirected to login page.
 
 **Test 2:** Go to Create Chart > Bar Chart. Enter the values below.
+
 Chart Title: Population by Country
+
 Chart Subtitle: Top 10 countries by population
 
 | X Data |
@@ -242,7 +244,9 @@ Go to the [Stripe dashboard](https://dashboard.stripe.com/login) and confirm the
 **Test 8:** Create a user with an active subscription. Go to "/subscription/". Try to pay another subscription. Confirm redirected Your Charts page.
 
 **Test 9:** Go to Create Chart > Bar Chart. Enter the values below.
+
 Chart Title: Population by Country
+
 Chart Subtitle: Top 10 countries by population
 
 | X Data |
@@ -261,7 +265,9 @@ Chart Subtitle: Top 10 countries by population
 Click Upload. Confirm that the error message "Number of y values must match number of x values." appears.
 
 **Test 10:** Go to Create Chart > Bar Chart. Enter the values below.
+
 Chart Title: Population by Country
+
 Chart Subtitle: Top 10 countries by population
 
 | X Data |
@@ -281,8 +287,11 @@ Chart Subtitle: Top 10 countries by population
 Click Upload. Confirm that the error message "y data must be numeric." appears.
 
 **Test 11:** Go to Create Chart > Line Chart. Enter the values below.
+
 Chart Title: Miles Ran by Day
+
 Chart Subtitle: Number of miles I ran by day
+
 Date Format: DD-MM-YYYY
 
 | X Data |
