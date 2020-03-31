@@ -189,6 +189,36 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 
 ### Manual Tests
 
+Select Line Chart without logging in. Confirm redirected to login page.
+
+Create a bar chart and try to save it without logging in. Confirm redirected to login page.
+
+Create a new user. Do not pick a subscription plan. Go to Account > Profile. Confirm the page has a "Choose Subscription" button.
+Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+
+Pick a subscription plan. Pay the subscription charge using a test card e.g.
+| Card Number | MM/YY | CVC | ZIP |
+| 4242 4242 4242 4242 | 08/21 | 123 | 12345 |
+Go to the [Stripe dashboard](https://dashboard.stripe.com/login) and confirm the card was successfully charged.
+Go to Accounts > Profile and confirm the subscription details are shown.
+Confirm a line chart can be created and saved.
+
+Create a chart and click "Download Image" button. Confirm a PNG of the chart downloads.
+
+Create a user with an active subscription. Go to the admin panel and set the subscription status to Expired.
+Login and go to Account > Profile and confirm there is a "Renew Subscription" button.
+Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+
+Create a user with a real email address. Go to Account > Reset Password. Enter email and confirm password reset email is received from . Confirm password can be reset. 
+
+
+Try to pay a second time
+
+form validation
+
+
+example data
+
 Created users with these details:
 
 The following cards from Stripe's [testing](https://stripe.com/docs/testing#international-cards) cards were used:
