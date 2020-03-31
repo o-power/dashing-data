@@ -187,6 +187,8 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 
 <h2 id="testing">Testing</h2>
 
+### Manual Tests
+
 Created users with these details:
 
 The following cards from Stripe's [testing](https://stripe.com/docs/testing#international-cards) cards were used:
