@@ -189,9 +189,9 @@ A live demo of the Dashing Data site can be found [here](https://dashing-data.he
 
 ### Manual Tests
 
-**Test 1:** Select Line Chart without logging in. Confirm redirected to login page.
+**Test 1:** Go to Create Chart > Line Chart without logging in. Confirm redirected to login page.
 
-**Test 2:** Create a bar chart with these values:
+**Test 2:** Go to Create Chart > Bar Chart. Enter the values below.
 Chart Title: Population by Country
 Chart Subtitle: Top 10 countries by population
 
@@ -221,7 +221,7 @@ Chart Subtitle: Top 10 countries by population
 | 145934462 |
 | 128932753 |
 
-Try to save it without logging in. Confirm redirected to login page.
+Click Upload. Click Save Chart without logging in. Confirm redirected to login page.
 
 **Test 3:** Register a new user. Do not pick a subscription plan. Go to Account > Profile. Confirm the page has a "Choose Subscription" button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
 
@@ -233,22 +233,85 @@ Try to save it without logging in. Confirm redirected to login page.
 
 Go to the [Stripe dashboard](https://dashboard.stripe.com/login) and confirm the card was successfully charged. Go to Account > Profile and confirm the subscription details are shown. Confirm a line chart can now be created and saved.
 
-**Test 5:** Create a chart and click "Download Image" button. Confirm a PNG of the chart downloads.
+**Test 5:** Create a chart and click the Download Image button. Confirm a PNG of the chart downloads.
 
-**Test 6:** Create a user with an active subscription. Go to the admin panel and set the subscription end date to a date in the past and the subscription status to Expired. Login and go to Account > Profile. Confirm there is a "Renew Subscription" button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
+**Test 6:** Create a user with an active subscription. Go to the admin panel and set the subscription end date to a date in the past and the subscription status to Expired. Login and go to Account > Profile. Confirm there is a Renew Subscription button. Go to Create Chart > Line Chart. Confirm redirected to subscription plans page.
 
 **Test 7:** Create a user with a real email address. Login. Go to Account > Reset Password. Enter email and confirm password reset email is received from noreplydashingdata@gmail.com. Confirm password can be reset.
 
-**Test 8:** Create a user with an active subscription. Go to "/subscription/". Try to pay another subscription. Confirm redirected "Your Charts" page.
+**Test 8:** Create a user with an active subscription. Go to "/subscription/". Try to pay another subscription. Confirm redirected Your Charts page.
 
-**Test 9:** 
+**Test 9:** Go to Create Chart > Bar Chart. Enter the values below.
+Chart Title: Population by Country
+Chart Subtitle: Top 10 countries by population
 
-form validation
+| X Data |
+| :--- |
+| China |
+| India |
+| United States |
+| Indonesia |
 
+| Y Data |
+| :--- |
+| 1439323776 |
+| 1380004385 |
+| 331002651 |
 
-example data
+Click Upload. Confirm that the error message "Number of y values must match number of x values." appears.
 
-Devices
+**Test 10:** Go to Create Chart > Bar Chart. Enter the values below.
+Chart Title: Population by Country
+Chart Subtitle: Top 10 countries by population
+
+| X Data |
+| :--- |
+| China |
+| India |
+| United States |
+| Indonesia |
+
+| Y Data |
+| :--- |
+| 1439323776 |
+| 1380004385 |
+| 331002651 |
+| Hello |
+
+Click Upload. Confirm that the error message "y data must be numeric." appears.
+
+**Test 11:** Go to Create Chart > Line Chart. Enter the values below.
+Chart Title: Miles Ran by Day
+Chart Subtitle: Number of miles I ran by day
+Date Format: DD-MM-YYYY
+
+| X Data |
+| :--- |
+| 01-03-2020 |
+| 05-03-2020 |
+| 09-03-2020 |
+| 14-03-2020 |
+| 15-03-2020 |
+| 20-03-2020 |
+| 25-03-2020 |
+| 26-03-2020 |
+| 31-03-2020 |
+
+| Y Data |
+| :--- |
+| 4.5 |
+| 10 |
+| 4.3 |
+| 3.7 |
+| 8 |
+| 9.1 |
+| 6 |
+| 4.6 |
+| 3.2 |
+
+Click Upload. Confirm that a line chart appears. Click Save Chart. Confirm chart is added to list in Your Charts. Click on view button beside chart in list. Confirm that the line chart appears. Go to Your Charts. Click on delete button beside chart in list. Confirm delete. Confirm that the line chart is gone.
+
+**Test 12:** Create a chart. Resize the browser window. Confirm that the chart resizes and that the number of tick marks and gridlines is reduced as the window gets smaller.
 
 ### Unit Tests
 
