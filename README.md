@@ -211,6 +211,11 @@ A number of unit tests were written to automate some of the testing.
 | barchart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_if_xy_mismatch |
 | barchart | test_views.py | CreateChartViewTestCase | test_correct_template_is_used |
 | barchart | test_views.py | ViewChartViewTestCase | test_correct_template_is_used |
+| linechart | test_forms.py | UploadDataFormTestCase | test_correct_message_for_nonnumeric_y_data |
+| linechart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_if_xy_mismatch |
+| linechart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_for_nondate_x_data |
+| linechart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_for_nondate_x_data |
+| linechart | test_forms.py | UploadDataFormTestCase | test_form_validation_fails_for_incorrectformat_x_data |
 
 To run the unit tests:
 ```
