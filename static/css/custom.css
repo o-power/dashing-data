@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* stops content being hid by navbar */
+/* padding stops content being hid by navbar */
 body {
     padding-top: 59px;
     font-family: 'Roboto', sans-serif;
@@ -148,4 +148,10 @@ body {
     background-color: #f8c723;
 }
 
-/*  */
+#jumbotron-section h1 {
+    color: #002e66;
+}
+
+#jumbotron-section p {
+    color: #002e66;
+}
